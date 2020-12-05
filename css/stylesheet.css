@@ -7,10 +7,26 @@ body {
 header{
   height:50px;
   display:flex;
+  flex-direction: row-reverse;
 }
 .body-main{
   width:95%;
+  /* height: 100vw; */
   margin:0 auto;
+  background-color: rgb(197, 245, 229);
+  /* background-image: url("/Users/makotokawakami/projects/tuku-ru/tuku-ru/images/pexels-henda-watani-320014.jpg");
+  background-size: cover;
+  background-position: left 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+}
+content div{
+  height:200px;
+  width: 45%;
+}
+img{
+  width:100%;
+  height:100%;
 }
 
 /* ハンバーガーボタン */
@@ -19,6 +35,7 @@ header{
   width: 50px;
   height: 44px;
   cursor: pointer;
+  z-index: 2;
 }
 .btn-trigger span {
   position: absolute;
