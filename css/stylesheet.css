@@ -5,14 +5,16 @@ body {
   box-sizing:border-box;
 }
 header{
-  height:50px;
+  height:75px;
   display:flex;
   flex-direction: row-reverse;
+  align-items: center; 
+  /* justify-content: space-around; */
 }
 .body-main{
   width:95%;
   /* height: 100vw; */
-  margin:0 auto;
+  margin:10px auto;
   background-color: rgb(197, 245, 229);
   /* background-image: url("./images/pexels-henda-watani-320014.jpg");
   background-size: cover;
@@ -24,13 +26,14 @@ header{
   height:200px;
   width: 100%;
   overflow: scroll;
+  display: flex;
 }
 .show-scroll .slider{
   display: flex;
 }
 .show-scroll .unit{
   height:200px;
-  width: 100%;
+  /* width: 100%; */
   margin: 0 2px;
 }
 .show-scroll img{
@@ -45,6 +48,7 @@ header{
   height: 44px;
   cursor: pointer;
   z-index: 2;
+  margin-right: 10px;
 }
 .btn-trigger span {
   position: absolute;

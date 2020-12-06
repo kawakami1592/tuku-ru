@@ -10,6 +10,17 @@
     mask.classList.toggle('hidden');
   });
 
+// スクロールバー
+  const scrollImgs = document.getElementById('slider-js');
+  const copyImgs = scrollImgs.cloneNode(true);
+  const showScrollJs = document.getElementById('show-scroll-js');
+  showScrollJs.insertBefore(copyImgs, scrollImgs.nextSibling);
+
+
+
+
+
+
 // モーダルウィンドウ
   const open = document.getElementById('open');
   const close = document.getElementById('close');
