@@ -23,6 +23,7 @@ header{
 content div{
   height:200px;
   width: 45%;
+  margin: 5px;
 }
 img{
   width:100%;
