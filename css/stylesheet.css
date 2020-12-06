@@ -14,20 +14,28 @@ header{
   /* height: 100vw; */
   margin:0 auto;
   background-color: rgb(197, 245, 229);
-  /* background-image: url("/Users/makotokawakami/projects/tuku-ru/tuku-ru/images/pexels-henda-watani-320014.jpg");
+  /* background-image: url("./images/pexels-henda-watani-320014.jpg");
   background-size: cover;
   background-position: left 0;
   background-repeat: no-repeat;
   background-attachment: fixed; */
 }
-content div{
+.show-scroll{
   height:200px;
-  width: 45%;
-  margin: 5px;
+  width: 100%;
+  overflow: scroll;
 }
-img{
-  width:100%;
+.show-scroll .slider{
+  display: flex;
+}
+.show-scroll .unit{
+  height:200px;
+  width: 100%;
+  margin: 0 2px;
+}
+.show-scroll img{
   height:100%;
+  object-fit: cover;
 }
 
 /* ハンバーガーボタン */
@@ -96,7 +104,7 @@ img{
 }
 
 /* ポップアップメッセージ */
-.popup-message {
+/* .popup-message {
   width: 50%;
   height:200px;
   padding: 8px 16px;
@@ -134,7 +142,7 @@ img{
   text-align: center;
   padding: 12px 0;
   margin: 16px auto 0;
-}
+} */
 
 /* モーダルウィンドウ */
 #mask {
