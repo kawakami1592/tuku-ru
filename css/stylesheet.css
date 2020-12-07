@@ -181,7 +181,8 @@ label .fa-angle-double-down{
     opacity: 0;
     pointer-events: none;
   }
-}
+}*/
+/* モーダルウィンドウ */
 #open, #close {
   cursor: pointer;
   width: 200px;
@@ -190,9 +191,7 @@ label .fa-angle-double-down{
   text-align: center;
   padding: 12px 0;
   margin: 16px auto 0;
-} */
-
-/* モーダルウィンドウ */
+}
 #mask {
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
@@ -239,6 +238,37 @@ details {
 details[open] {
   height: 80px;
   background: #c3f6ff;
+}
+
+/* タブメニュー */
+.tab-menu{
+  margin-top: 10px;
+}
+.tab-menu ul{
+  display:flex;
+  justify-content: space-around;
+  list-style: none;
+}
+.tab-menu ul li{
+  width:20%;
+  height:2rem;
+  border-radius: 5px 5px 0 0;
+  background-color: rgb(248, 166, 221);
+  line-height: 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+.tab-content{
+  width:100%;
+  height:300px;
+  background-color: rgb(245, 232, 175);
+  display: none;
+}
+.tab-selected{
+  background-color: rgb(245, 232, 175)!important;
+}
+.tab-selected-content{
+  display:block;
 }
 
 /* @media (min-width: 900px) {

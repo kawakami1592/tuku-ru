@@ -44,4 +44,24 @@
 
   });
 
+
+
+  const tabMenus = document.querySelectorAll('.tab-menu ul li');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabMenus.forEach(tabMenu => {
+    tabMenu.addEventListener('click', () => {
+      
+      tabMenus.forEach(tabMenuAll => {
+        tabMenuAll.classList.remove('tab-selected');
+      });
+      tabMenu.classList.add('tab-selected');
+
+      tabContents.forEach(tabContent => {
+        tabContent.classList.remove('tab-selected-content');
+      });
+      document.getElementById(tabMenu.dataset.id).classList.add('tab-selected-content');
+    });
+  });
+
 }
