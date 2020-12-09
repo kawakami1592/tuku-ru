@@ -64,4 +64,54 @@
     });
   });
 
+
+
+  var photo1 = $('.photo1');
+
+  var photoNumber =0;
+
+  function changePhoto() {
+    photoNumber += 1;
+
+    if (photoNumber >= 4) {
+      photoNumber = 0;
+    }
+
+    if (photoNumber == 0) {
+      photo1.attr('src', 'img/img.jpg');
+    }
+    else if (photoNumber == 1) {
+      photo1.attr('src', 'img/img1.jpg');
+    }
+    else if (photoNumber == 2) {
+      photo1.attr('src', 'img/img2.jpg');
+    }
+    else if (photoNumber == 3) {
+      photo1.attr('src', 'img/img3.jpg');
+    }
+    else if (photoNumber == 4) {
+      photo1.attr('src', 'img/img4.jpg');
+    }
+  };
+
+function changePhoto2() {
+  photoNumber -= 1;
+
+  if (photoNumber < 0) {
+    photoNumber = 3;
+  }
+
+  if (photoNumber == 0) {
+    photo1.attr('src', 'img/img.jpg');
+  }
+  else if (photoNumber == 1) {
+    photo1.attr('src', 'img/img1.jpg');
+  }
+  else if (photoNumber == 2) {
+    photo1.attr('src', 'img/img2.jpg');
+  }
+ else if (photoNumber == 3) {
+    photo1.attr('src', 'img/img3.jpg');
+  }
+}
 }

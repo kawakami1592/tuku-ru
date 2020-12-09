@@ -12,15 +12,19 @@ header{
   /* justify-content: space-around; */
 }
 .body-main{
-  width:95%;
+  width:100vw;
   /* height: 100vw; */
   margin:10px auto;
   background-color: rgb(197, 245, 229);
-  /* background-image: url("./images/pexels-henda-watani-320014.jpg");
+}
+.top{
+  width: 100vw;
+  height: 100vw;
+  background-image: url("./../images/pexels-pixabay-161850.jpg");
   background-size: cover;
-  background-position: left 0;
+  /* background-position: left 0; */
   background-repeat: no-repeat;
-  background-attachment: fixed; */
+  background-attachment: fixed;
 }
 .show-scroll{
   height:200px;
@@ -203,11 +207,11 @@ label .fa-angle-double-down{
 }
 #modal {
   background: #fff;
-  width: 300px;
-  height: 300px;
+  /* width: 300px;
+  height: 300px; */
   padding: 20px;
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   top: 40px;
   left: 0;
   right: 0;
@@ -215,8 +219,10 @@ label .fa-angle-double-down{
   transition: transform 0.4s;
   z-index: 2;
 }
-#modal > p {
-  margin: 0 0 20px;
+#modal > img {
+  width:100%;
+  height:100%;
+  object-fit: cover;
 }
 #mask.hidden {
   display: none;
@@ -270,6 +276,9 @@ details[open] {
 .tab-selected-content{
   display:block;
 }
+
+
+
 
 /* @media (min-width: 900px) {
 
