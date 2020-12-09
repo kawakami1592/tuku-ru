@@ -31,6 +31,13 @@ header{
   width: 100%;
   overflow: scroll;
   display: flex;
+  /* animation: 3s ease-in 1s infinite reverse both running slidein; */
+  animation: 5s linear infinite slidein;
+}
+
+@keyframes slidein{
+  from { transform: none; }
+  to   { transform: translateX(-50%); }
 }
 .show-scroll .slider{
   display: flex;
@@ -44,6 +51,8 @@ header{
   height:100%;
   object-fit: cover;
 }
+
+
 
 /* ハンバーガーボタン */
 .btn-trigger {
