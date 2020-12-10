@@ -19,25 +19,38 @@ header{
 }
 .top{
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   background-image: url("./../images/pexels-pixabay-161850.jpg");
   background-size: cover;
   /* background-position: left 0; */
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.slideshow{
+  overflow: hidden;
+}
+.show-slider{
+  display: flex;
+  width:200vw;
+  opacity : 0.9;
+  animation: 20s linear infinite sliderAnimation;
+}
+.show-slider img{
+  width: 20vw;
+}
+
+@keyframes sliderAnimation {
+  0% {transform: none;}
+  100% {transform: translateX(-50%);}
+}
+
+
 .show-scroll{
   height:200px;
   width: 100%;
   overflow: scroll;
   display: flex;
-  /* animation: 3s ease-in 1s infinite reverse both running slidein; */
-  animation: 5s linear infinite slidein;
-}
-
-@keyframes slidein{
-  from { transform: none; }
-  to   { transform: translateX(-50%); }
 }
 .show-scroll .slider{
   display: flex;
@@ -51,7 +64,6 @@ header{
   height:100%;
   object-fit: cover;
 }
-
 
 
 /* ハンバーガーボタン */
@@ -216,8 +228,8 @@ label .fa-angle-double-down{
 }
 #modal {
   background: #fff;
-  /* width: 300px;
-  height: 300px; */
+  width: 70%;
+  height: 70%;
   padding: 20px;
   border-radius: 4px;
   position: fixed;
@@ -229,6 +241,7 @@ label .fa-angle-double-down{
   z-index: 2;
 }
 #modal > img {
+  margin: 0 0 20px;
   width:100%;
   height:100%;
   object-fit: cover;
