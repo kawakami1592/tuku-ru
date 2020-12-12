@@ -1,6 +1,5 @@
-body {
+* {
   font-size: 16px;
-
   font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
   box-sizing:border-box;
 }
@@ -20,7 +19,7 @@ header h1{
   width:100vw;
   /* height: 100vw; */
   margin:10px auto;
-  background-color: rgb(197, 245, 229);
+  background: rgb(197, 245, 229);
 }
 .top{
   width: 100vw;
@@ -38,7 +37,7 @@ header h1{
 .show-slider{
   display: flex;
   width:200vw;
-  opacity : 0.9;
+  opacity : 0.85;
   animation: 20s linear infinite sliderAnimation;
 }
 .show-slider img{
@@ -85,7 +84,7 @@ header h1{
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: rgb(179, 207, 230);
+  background: rgb(179, 207, 230);
   border-radius: 4px;
 }
 .btn-trigger,
@@ -118,7 +117,7 @@ header h1{
 #hamburger{
   width: 250px;
   height: 100%;
-  background-color: #c3f6ff;
+  background: #c3f6ff;
   border-radius: 4px;
   position: absolute;
   top: 10%;
@@ -179,10 +178,8 @@ label .fa-angle-double-down{
 
 
 
-
-
 /* ポップアップメッセージ */
-/* .popup-message {
+.popup-message {
   width: 50%;
   height:200px;
   padding: 8px 16px;
@@ -193,7 +190,7 @@ label .fa-angle-double-down{
   position: fixed;
   top:calc(50% - 100px);
   left: 20%;
-  animation: popup 2s forwards;
+  animation: popup 1.5s forwards;
   text-align: center;
 }
 @keyframes popup {
@@ -211,7 +208,8 @@ label .fa-angle-double-down{
     opacity: 0;
     pointer-events: none;
   }
-}*/
+}
+
 /* モーダルウィンドウ */
 #open, #close {
   cursor: pointer;
@@ -220,7 +218,8 @@ label .fa-angle-double-down{
   border-radius: 4px;
   text-align: center;
   padding: 12px 0;
-  margin: 16px auto 0;
+  margin: 16px auto;
+  background: cyan;
 }
 #mask {
   background: rgba(0, 0, 0, 0.4);
@@ -286,7 +285,7 @@ details[open] {
   width:20%;
   height:2rem;
   border-radius: 5px 5px 0 0;
-  background-color: rgb(248, 166, 221);
+  background: rgb(248, 166, 221);
   line-height: 2rem;
   text-align: center;
   cursor: pointer;
@@ -294,11 +293,12 @@ details[open] {
 .tab-content{
   width:100%;
   height:300px;
-  background-color: rgb(245, 232, 175);
+  padding:10px;
+  background: rgb(245, 232, 175);
   display: none;
 }
 .tab-selected{
-  background-color: rgb(245, 232, 175)!important;
+  background: rgb(245, 232, 175)!important;
 }
 .tab-selected-content{
   display:block;
