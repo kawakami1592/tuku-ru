@@ -5,20 +5,24 @@
 }
 header{
   height:75px;
+  width: 100vw;
+  background: #ffffff;;
   display:flex;
-  /* flex-direction: row-reverse; */
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
+  position: fixed;
+  top:0;
+  z-index: 3;
 }
 header h1{
   font-family: 'Amatic SC', cursive;
   font-size: 3rem;
+  
 }
 
 .body-main{
   width:100vw;
-  /* height: 100vw; */
-  margin:10px auto;
+  margin:75px auto 0;
   background: rgb(197, 245, 229);
 }
 .top{
@@ -26,7 +30,6 @@ header h1{
   height: 100vh;
   background-image: url("./../images/pexels-pixabay-161850.jpg");
   background-size: cover;
-  /* background-position: left 0; */
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -61,7 +64,6 @@ header h1{
 }
 .show-scroll .unit{
   height:200px;
-  /* width: 100%; */
   margin: 0 2px;
 }
 .show-scroll img{
@@ -301,10 +303,60 @@ details[open] {
   background: rgb(245, 232, 175)!important;
 }
 .tab-selected-content{
-  display:block;
+  display: block;
 }
 
 
+/* グリッドレイアウト */
+.grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: 100px;
+  grid-auto-flow: dense;
+  grid-auto-columns: 100px;
+  transition: all 0.5s;
+  /* animation: sideanime 3s ease-in-out infinite alternate; */
+}
+/* @keyframes sideanime {
+  to{
+    width:200px;
+  }
+} */
+.grid-1 {
+  background: hsl(0, 60%, 60%);
+}
+
+.grid-2 {
+  background: hsl(60, 60%, 60%);
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.grid-3 {
+  background: hsl(120, 60%, 60%);
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.grid-4 {
+  background: hsl(180, 60%, 60%);
+}
+
+.grid-5 {
+  background: hsl(240, 60%, 60%);
+}
+.grid-6 {
+  background: hsl(288, 31%, 48%);
+  grid-row: span 2;
+}
+.grid-7 {
+  background: hsl(337, 31%, 48%);
+  grid-column: span 2;
+}
+.grid-8 {
+  background: hsl(145, 50%, 62%);
+}
 
 
 /* @media (min-width: 900px) {

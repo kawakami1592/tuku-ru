@@ -60,6 +60,10 @@
         './images/seven.png',
         './images/bell.png',
         './images/cherry.png',
+        './images/balloon.jpg',
+        './images/watermelon.jpg',
+        './images/bell.png',
+        './images/balloon.jpg',
       ];
       //ランダムなimgを返す。「切り捨て（０〜１の乱数 * 配列の数）」
       return images[Math.floor(Math.random() * images.length)];
