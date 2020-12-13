@@ -294,7 +294,7 @@ details[open] {
 }
 .tab-content{
   width:100%;
-  height:300px;
+  min-height:300px;
   padding:10px;
   background: rgb(245, 232, 175);
   display: none;
@@ -307,55 +307,22 @@ details[open] {
 }
 
 
-/* グリッドレイアウト */
-.grid{
+#wrapper {
+  position: relative;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-auto-rows: 100px;
-  grid-auto-flow: dense;
-  grid-auto-columns: 100px;
-  transition: all 0.5s;
-  /* animation: sideanime 3s ease-in-out infinite alternate; */
 }
-/* @keyframes sideanime {
-  to{
-    width:200px;
-  }
-} */
-.grid-1 {
-  background: hsl(0, 60%, 60%);
+#wrapper:before {
+  content:"";
+  display: block;
+  padding-top: 75%; /* 高さを幅の75%に固定 */
 }
-
-.grid-2 {
-  background: hsl(60, 60%, 60%);
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.grid-3 {
-  background: hsl(120, 60%, 60%);
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.grid-4 {
-  background: hsl(180, 60%, 60%);
-}
-
-.grid-5 {
-  background: hsl(240, 60%, 60%);
-}
-.grid-6 {
-  background: hsl(288, 31%, 48%);
-  grid-row: span 2;
-}
-.grid-7 {
-  background: hsl(337, 31%, 48%);
-  grid-column: span 2;
-}
-.grid-8 {
-  background: hsl(145, 50%, 62%);
+#content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: blue;
 }
 
 

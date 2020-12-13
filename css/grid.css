@@ -1,0 +1,64 @@
+/* グリッドレイアウト */
+.grid{
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: 100px;
+  grid-auto-flow: dense;
+  grid-auto-columns: 100px;
+  gap: 20px;
+}
+
+.grid-1 {
+  background: hsl(0, 60%, 60%);
+}
+
+.grid-2 {
+  background: hsl(61, 80%, 66%);
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.grid-3 {
+  background: hsl(120, 60%, 60%);
+  grid-row: span 3;
+}
+
+.grid-4 {
+  background: hsl(180, 60%, 60%);
+}
+
+.grid-5 {
+  background: hsl(240, 60%, 60%);
+  grid-column: span 2;
+  
+}
+.grid-6 {
+  background: hsl(288, 31%, 48%);
+  grid-row: span 2;
+}
+.grid-7 {
+  background: hsl(51, 97%, 56%);
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.grid-8 {
+  background: hsl(327, 50%, 62%);
+}
+.grid-9 {
+  background: hsl(34, 81%, 69%);
+  grid-column: span 2;
+}
+.grid-10 {
+  background: hsl(29, 50%, 62%);
+}
+.grid-11 {
+  background: hsl(145, 50%, 62%);
+}
+.grid-12 {
+  background: hsl(216, 50%, 62%);
+}
+.grid-13 {
+  background: hsl(330, 50%, 62%);
+}
