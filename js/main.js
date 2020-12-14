@@ -45,7 +45,7 @@
   });
 
 
-
+// タブメニュー
   const tabMenus = document.querySelectorAll('.tab-menu ul li');
   const tabContents = document.querySelectorAll('.tab-content');
 

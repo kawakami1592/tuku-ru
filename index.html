@@ -46,7 +46,7 @@
     <nav id="hamburger" class="hamburger-close">
         <div class="hamburger-menu">
           <input type="checkbox" id="menu_bar01" class="accordion" />
-          <label for="menu_bar01"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
+          <label class="accordion-label" for="menu_bar01"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
           <ul id="links01">
               <li><a href="./next.html">nextページ</a></li>
               <li><a href="">Link02</a></li>
@@ -54,7 +54,7 @@
               <li><a href="">Link04</a></li>
           </ul>
           <input type="checkbox" id="menu_bar02" class="accordion" />
-          <label for="menu_bar02"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
+          <label class="accordion-label" for="menu_bar02"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
           <ul id="links02">
               <li><a href="">Link01</a></li>
               <li><a href="">Link02</a></li>
@@ -104,19 +104,30 @@
       <ul>
         <li data-id="tab-slot" class="tab-selected">スロット</li>
         <li data-id="tab-B">メニュー</li>
-        <li data-id="tab-C">フッター</li>
+        <li data-id="tab-C">FizzBuzz</li>
         <li data-id="tab-D">メニュー</li>
       </ul>
+
       <div class="tab-content tab-selected-content" id="tab-slot">
         <div class="slot" id="slot-main"></div>
         <div id="start">START</div>
       </div>
+
       <div class="tab-content" id="tab-B">
         <div id="wrapper">
           <div id="content">hogehoge fugafuga</div>
         </div>
       </div>
-      <div class="tab-content" id="tab-C">フッタフッタフッタフッタフッタ</div>
+
+      <div class="tab-content" id="tab-C">
+        <div>
+          <form method="post">
+            <label for="input-fizzbuzz">数字を入力してください</label>
+            <input type="number" name="input-num" id="input-fizzbuzz" placeholder="例　27　54　など">
+          </form>
+        </div>
+      </div>
+
       <div class="tab-content" id="tab-D">メニュメニュメニュメニュメニュ</div>
     </div>
   </div>
@@ -145,5 +156,6 @@
   
   <script src="js/main.js"></script>
   <script src="js/slot.js"></script>
+  <script src="js/fizzbuzz.js"></script>
 </body>
 </html>
