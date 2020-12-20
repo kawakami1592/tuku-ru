@@ -103,9 +103,9 @@
     <div class="tab-menu">
       <ul>
         <li data-id="tab-slot" class="tab-selected">スロット</li>
-        <li data-id="tab-B">メニュー</li>
+        <li data-id="tab-B">ユークリッド</li>
         <li data-id="tab-C">FizzBuzz</li>
-        <li data-id="tab-D">メニュー</li>
+        <li data-id="tab-D">フェルマーテスト</li>
       </ul>
 
       <div class="tab-content tab-selected-content" id="tab-slot">
@@ -114,8 +114,21 @@
       </div>
 
       <div class="tab-content" id="tab-B">
-        <div id="wrapper">
-          <div id="content">hogehoge fugafuga</div>
+        <div>
+          <h2>最大公約数</h2>
+          <p></p>
+          <p></p>
+          
+          <form id="form-euclid">
+            <label for="euclid1">数字を入力してください</label>
+            <input type="number" name="input-num" id="euclid1" placeholder="例　27　54　など">
+            <input type="number" name="input-num" id="euclid2" placeholder="例　27　54　など">
+            <button>公約数は？？</button>
+          </form>
+          <div>
+            <p id="euclid-ans">ここに表示されます</p>
+
+          </div>
         </div>
       </div>
 

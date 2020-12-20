@@ -1,11 +1,32 @@
 'use strict';
 {
+  const formEuclid = document.getElementById('form-euclid');
+
+  formEuclid.addEventListener('submit',(e)=> {
+    e.preventDefault();
+    let euclidNum1 = parseFloat(document.getElementById('euclid1').value);
+    let euclidNum2 = parseFloat(document.getElementById('euclid2').value);
+    const commonEuclidAns = document.getElementById('euclid-ans');
+    
+    let modEuclid = 0
+
+    while((modEuclid = euclidNum1 % euclidNum2) !== 0){
+
+    euclidNum1 = euclidNum2;
+    euclidNum2 = modEuclid;
+    }
+    console.log(euclidNum2);
+    commonEuclidAns.textContent = euclidNum2;
+  })
+
+
+
   const formNum = document.getElementById('form-fizzbuzz');
 
   formNum.addEventListener('submit',(e)=> {
     e.preventDefault();
-    const inputNum = document.getElementById('input-fizzbuzz').value;
-    const fizzbuzzAns = document.getElementById('fizzbuzz-ans')
+    const inputNum = parseFloat(document.getElementById('input-fizzbuzz').value);
+    const fizzbuzzAns = document.getElementById('fizzbuzz-ans');
     
     if(inputNum % 15 === 0){
       console.log('FizzBuzz');
@@ -51,14 +72,8 @@
         fermatAns.textContent = "素数だね";
         // console.log(i);
       }
+
     }
-
-
-
-
-    // inputFermat ** inputFermat % inputFermat === inputFermat;
-    // (inputFermat - x) ** inputFermat % inputFermat === (inputFermat - x)
-
 
   
   })

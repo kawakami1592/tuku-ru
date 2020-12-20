@@ -308,23 +308,6 @@ details[open] {
 }
 
 
-#wrapper {
-  position: relative;
-  width: 100%;
-}
-#wrapper:before {
-  content:"";
-  display: block;
-  padding-top: 75%; /* 高さを幅の75%に固定 */
-}
-#content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: blue;
-}
 
 
 /* @media (min-width: 900px) {
