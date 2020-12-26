@@ -1,0 +1,7 @@
+.canvasbrock{
+  margin: 1rem;
+}
+canvas {
+  border: solid 2px blue;
+  background: #fff;
+}
