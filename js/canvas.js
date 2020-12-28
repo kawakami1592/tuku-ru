@@ -8,14 +8,11 @@
     }
     const ctx = canvas.getContext('2d');
 
-    ctx.beginPath();
-    ctx.moveTo(50, 50);
-    ctx.lineTo(100, 50);
-    ctx.lineTo(200, 100);
-    // ctx.closePath();
+    // ctx.ellipse(x, y, rx, ry, rotation, start, end);
+    ctx.ellipse(100, 100, 50, 30, Math.PI/2, 0, 2 * Math.PI);
+    // ctx.rect(50, 50, 50, 50);
     
     ctx.stroke();
-    // ctx.fill();
   }
 
   draw();
