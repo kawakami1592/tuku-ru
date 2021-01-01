@@ -1,6 +1,8 @@
 'use strict';
 
 {
+  let t = 0;
+
   function draw() {
     const canvas = document.querySelector('canvas');
     if (typeof canvas.getContext === 'undefined') {
@@ -8,20 +10,21 @@
     }
     const ctx = canvas.getContext('2d');
 
-    const img = document.createElement('img');
-    img.src = 'images/logo.png';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    img.addEventListener('load', () => {
-      ctx.drawImage(img, 0, 0);
-      // ctx.drawImage(img, 0, 0, 40, 40);
+    ctx.beginPath();
+    ctx.ellipse(100, 100, 40, 30, 0, 0, 2 * Math.PI);
+    ctx.fillStyle = 'black';
+    ctx.fill();
 
-      // const pattern = ctx.createPattern(img, 'repeat');
-      // repeat-x, repeat-y, no-repeat
-      const pattern = ctx.createPattern(img, 'repeat-y');
-      
-      ctx.fillStyle = pattern;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    });
+    ctx.beginPath();
+    ctx.ellipse(80 + Math.sin(t / 10), 100, 8, 8, 0, 0, 2 * Math.PI);
+    ctx.ellipse(120 + Math.sin(t / 30), 100, 8, 8, 0, 0, 2 * Math.PI);
+    ctx.fillStyle = 'skyblue';
+    ctx.fill();
+
+    t++;
+    setTimeout(draw, 20);
   }
 
   draw();
