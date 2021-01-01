@@ -8,11 +8,20 @@
     }
     const ctx = canvas.getContext('2d');
 
-    // ctx.ellipse(x, y, rx, ry, rotation, start, end);
-    ctx.ellipse(100, 100, 50, 30, Math.PI/2, 0, 2 * Math.PI);
-    // ctx.rect(50, 50, 50, 50);
-    
-    ctx.stroke();
+    const img = document.createElement('img');
+    img.src = 'images/logo.png';
+
+    img.addEventListener('load', () => {
+      ctx.drawImage(img, 0, 0);
+      // ctx.drawImage(img, 0, 0, 40, 40);
+
+      // const pattern = ctx.createPattern(img, 'repeat');
+      // repeat-x, repeat-y, no-repeat
+      const pattern = ctx.createPattern(img, 'repeat-y');
+      
+      ctx.fillStyle = pattern;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
   }
 
   draw();
