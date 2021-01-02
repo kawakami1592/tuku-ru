@@ -1,7 +1,6 @@
-.canvasbrock{
-  margin: 1rem;
-}
-canvas {
-  border: solid 2px blue;
-  background: #fff;
+#puzzle{
+  background: pink;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
 }
