@@ -10,14 +10,14 @@
     }
     const ctx = canvas.getContext('2d');
 
-    const CANVAS_WIDTH = canvas.width;
-    const CANVAS_HEIGHT = canvas.height;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = CANVAS_WIDTH * dpr;
-    canvas.height = CANVAS_HEIGHT * dpr;
-    ctx.scale(dpr, dpr);
-    canvas.style.width = CANVAS_WIDTH + 'px';
-    canvas.style.height = CANVAS_HEIGHT + 'px';
+    // const CANVAS_WIDTH = canvas.width;
+    // const CANVAS_HEIGHT = canvas.height;
+    // const dpr = window.devicePixelRatio || 1;
+    // canvas.width = CANVAS_WIDTH * dpr;
+    // canvas.height = CANVAS_HEIGHT * dpr;
+    // ctx.scale(dpr, dpr);
+    // canvas.style.width = CANVAS_WIDTH + 'px';
+    // canvas.style.height = CANVAS_HEIGHT + 'px';
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -43,8 +43,8 @@
 
   (() => {
     class Puzzle {
-      constructor(canvas, level ,image) {
-        this.canvas = canvas;
+      constructor(puzzleCanvas, level ,image) {
+        this.canvas = puzzleCanvas;
         this.level = level;
         this.ctx = this.canvas.getContext('2d');
         this.img = document.createElement('img');
@@ -255,12 +255,12 @@
     }
 
 
-    const canvas = document.getElementById('puzzle');
-    if (typeof canvas.getContext === 'undefined') {
+    const puzzleCanvas = document.getElementById('puzzle');
+    if (typeof puzzleCanvas.getContext === 'undefined') {
       return;
     }
     //インスタンス生成
-    new Puzzle(canvas ,50 ,'images/15puzzle.png');
+    new Puzzle(puzzleCanvas ,50 ,'images/15puzzle.png');
 
   })();
 
