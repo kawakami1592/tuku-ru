@@ -43,10 +43,16 @@
 
   (() => {
     class Puzzle {
-      constructor(canvas, level) {
+      constructor(canvas, level ,image) {
         this.canvas = canvas;
         this.level = level;
         this.ctx = this.canvas.getContext('2d');
+        this.img = document.createElement('img');
+        this.img.src = image;
+        this.img.addEventListener('load', () => {
+          this.render();
+        });
+        this.TILE_SIZE = 70;
 
         //タイル初期配置用２重配列
         this.tiles = [
@@ -55,6 +61,8 @@
           [8 , 9 , 10, 11],
           [12, 13, 14, 15],
         ];
+        this.BOARD_SIZE = this.tiles.length;
+        this.BLANK_INDEX = this.BOARD_SIZE ** 2 - 1;
         //タイル移動用
         this.UDLR = [
           [0, -1], // up
@@ -62,21 +70,23 @@
           [-1, 0], // left
           [1, 0], // right
         ];
-
-        this.img = document.createElement('img');
-        this.img.src = 'images/15puzzle.png';
-        this.img.addEventListener('load', () => {
-          this.render();
-        });
+        //クリア状態フラグ
+        this.isCompleted = false;
 
         //タイルクリックイベント
         this.canvas.addEventListener('click', e => {
+
+          //クリアフラグ判定
+          if (this.isCompleted === true) {
+            return;
+          }
+
           //キャンバスの配置情報を取得
           const rect = this.canvas.getBoundingClientRect();
 
-          const col = Math.floor((e.clientX - rect.left) / 70);
+          const col = Math.floor((e.clientX - rect.left) / this.TILE_SIZE);
           //ディスプレイに対するクリック位置からキャンバスの位置情報を引いた値を70で割り、小数点以下を切り捨て
-          const row = Math.floor((e.clientY - rect.top) / 70);
+          const row = Math.floor((e.clientY - rect.top) / this.TILE_SIZE);
           console.log(col, row);
           this.swapTiles(col, row);
           this.render();
@@ -84,42 +94,66 @@
           //ゲームクリアの判定
           if (this.isComplete() === true) {
             this.renderGameClear();
+            this.isCompleted = true;
           }
         });
 
-        this.shuffle(this.level);
+        //初期シャッフル
+        do {
+          this.shuffle(this.level);
+        } while (this.isComplete() === true);
+        //シャッフル後クリア判定をしてクリアしていれば再度シャッフル
       }
 
+      
       //タイル初期配置用２重配列を回し座標を[row][col]で取得
       render() {
-        for (let row = 0; row < 4; row++) {
-          for (let col = 0; col < 4; col++) {
+        for (let row = 0; row < this.BOARD_SIZE; row++) {
+          for (let col = 0; col < this.BOARD_SIZE; col++) {
             this.renderTile(this.tiles[row][col], col, row);
           }
         }
       }
-  
+
       //元画像から切り出し、再配置
       renderTile(n, col, row) {
-        this.ctx.drawImage(
-          this.img,//元画像
-          (n % 4) * 70, Math.floor(n / 4) * 70, 70, 70,//画像の切取り位置
-          col * 70, row * 70, 70, 70//再配置位置
-        );
+        if (n === this.BLANK_INDEX) {
+          this.ctx.fillStyle = '#eeeeee';
+          this.ctx.fillRect(
+            col * this.TILE_SIZE, 
+            row * this.TILE_SIZE, 
+            this.TILE_SIZE, 
+            this.TILE_SIZE
+          );
+        } else {
+          this.ctx.drawImage(
+            this.img,//元画像
+            //画像の切取り位置
+            (n % this.BOARD_SIZE) * this.TILE_SIZE, 
+            Math.floor(n / this.BOARD_SIZE) * this.TILE_SIZE, 
+            this.TILE_SIZE, 
+            this.TILE_SIZE,
+            //再配置位置
+            col * this.TILE_SIZE, 
+            row * this.TILE_SIZE, 
+            this.TILE_SIZE, 
+            this.TILE_SIZE
+          );
+        }
       }
   
       //値が枠外(0~3)ならtrueを返す
       isOutside(destCol, destRow) {
         return (
-          destCol < 0 || destCol > 3 || destRow < 0 || destRow > 3
+          destCol < 0 || destCol > this.BOARD_SIZE-1 || destRow < 0 || destRow > this.BOARD_SIZE-1
         );
       }
 
       //初期シャッフル
       shuffle(n) {
         //15番の初期値
-        let blankCol = 3;
-        let blankRow = 3;
+        let blankCol = this.BOARD_SIZE-1;
+        let blankRow = this.BOARD_SIZE-1;
       
         //シャッフル
         for (let i = 0; i < n; i++) {
@@ -127,27 +161,9 @@
           let destRow;
 
           do {
-            const dir = Math.floor(Math.random() * 4);//0~3のランダムな数値
+            const dir = Math.floor(Math.random() * this.BOARD_SIZE);//0~3のランダムな数値
             destCol = blankCol + this.UDLR[dir][0];
             destRow = blankRow + this.UDLR[dir][1];
-            // switch (dir) {
-            //   case 0: // up
-            //     destCol = blankCol + UDLR[0][0]
-            //     destRow = blankRow + UDLR[0][1];
-            //     break;
-            //   case 1: // down
-            //     destCol = blankCol + UDLR[1][0]
-            //     destRow = blankRow + UDLR[1][1]
-            //     break;
-            //   case 2: // left
-            //     destCol = blankCol + UDLR[2][0]
-            //     destRow = blankRow + UDLR[2][1]
-            //     break;
-            //   case 3: // right
-            //     destCol = blankCol + UDLR[3][0]
-            //     destRow = blankRow + UDLR[3][1]
-            //     break;
-            // }
 
           //上下左右がキャンバスからはみ出す場合は次のループへスキップする
           } while (this.isOutside(destCol, destRow) === true);
@@ -166,12 +182,12 @@
 
       //タイルのクリックアクション
       swapTiles(col, row) {
-        if (this.tiles[row][col] === 15) {
+        if (this.tiles[row][col] === this.BLANK_INDEX) {
           return;
         }
   
         //クリックされたタイルの隣り合うタイルを調べる
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < this.BOARD_SIZE; i++) {
           const destCol = col + this.UDLR[i][0];
           const destRow = row + this.UDLR[i][1];
 
@@ -200,7 +216,7 @@
           }
   
           //隣り合うタイルが15番なら分割代入で入れ替える
-          if (this.tiles[destRow][destCol] === 15) {
+          if (this.tiles[destRow][destCol] === this.BLANK_INDEX) {
             [
               this.tiles[row][col],
               this.tiles[destRow][destCol],
@@ -210,11 +226,21 @@
             ];
             break;
           }
+
         }
       }
 
       //クリア判定
+      //タイル初期配置用２重配列と比較して値が全てあっていればtrue
       isComplete() {
+        let i = 0;
+        for (let row = 0; row < this.BOARD_SIZE; row++) {
+          for (let col = 0; col < this.BOARD_SIZE; col++) {
+            if (this.tiles[row][col] !== i++) {
+              return false;
+            }
+          }
+        }
         return true;
       }
       //クリア画面
@@ -234,7 +260,8 @@
       return;
     }
     //インスタンス生成
-    new Puzzle(canvas ,30);
+    new Puzzle(canvas ,50 ,'images/15puzzle.png');
+
   })();
 
 }
