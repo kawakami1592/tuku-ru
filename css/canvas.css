@@ -1,6 +1,12 @@
 #puzzle{
   background: pink;
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
   cursor: pointer;
+}
+
+#pinpong {
+  background: #222;
+  display: block;
+  margin: 10px auto;
 }

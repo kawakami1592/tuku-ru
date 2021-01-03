@@ -1,46 +1,7 @@
 'use strict';
 
 {
-  let t = 0;
-
-  function draw() {
-    const canvas = document.getElementById('canvas-eye');
-    if (typeof canvas.getContext === 'undefined') {
-      return;
-    }
-    const ctx = canvas.getContext('2d');
-
-    // const CANVAS_WIDTH = canvas.width;
-    // const CANVAS_HEIGHT = canvas.height;
-    // const dpr = window.devicePixelRatio || 1;
-    // canvas.width = CANVAS_WIDTH * dpr;
-    // canvas.height = CANVAS_HEIGHT * dpr;
-    // ctx.scale(dpr, dpr);
-    // canvas.style.width = CANVAS_WIDTH + 'px';
-    // canvas.style.height = CANVAS_HEIGHT + 'px';
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.beginPath();
-    ctx.ellipse(100, 100, 40, 30, 0, 0, 2 * Math.PI);
-    ctx.fillStyle = 'black';
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.ellipse(80 + 4*Math.sin(t / 20), 100, 8, 8, 0, 0, 2 * Math.PI);
-    ctx.ellipse(120 + 4*Math.sin(t / 20), 100, 8, 8, 0, 0, 2 * Math.PI);
-    ctx.fillStyle = 'skyblue';
-    ctx.fill();
-
-    t++;
-    setTimeout(draw, 20);
-  }
-
-  draw();
-
-
   // 15パズル
-
   (() => {
     class Puzzle {
       constructor(puzzleCanvas, level ,image) {
@@ -49,9 +10,7 @@
         this.ctx = this.canvas.getContext('2d');
         this.img = document.createElement('img');
         this.img.src = image;
-        this.img.addEventListener('load', () => {
-          this.render();
-        });
+
         this.TILE_SIZE = 70;
 
         //タイル初期配置用２重配列
@@ -73,6 +32,11 @@
         //クリア状態フラグ
         this.isCompleted = false;
 
+        //ロード時のイベント
+        this.img.addEventListener('load', () => {
+          this.render();
+        });
+
         //タイルクリックイベント
         this.canvas.addEventListener('click', e => {
 
@@ -87,7 +51,7 @@
           const col = Math.floor((e.clientX - rect.left) / this.TILE_SIZE);
           //ディスプレイに対するクリック位置からキャンバスの位置情報を引いた値を70で割り、小数点以下を切り捨て
           const row = Math.floor((e.clientY - rect.top) / this.TILE_SIZE);
-          console.log(col, row);
+
           this.swapTiles(col, row);
           this.render();
 
@@ -260,7 +224,7 @@
       return;
     }
     //インスタンス生成
-    new Puzzle(puzzleCanvas ,50 ,'images/15puzzle.png');
+    new Puzzle(puzzleCanvas ,70 ,'images/15puzzle.png');
 
   })();
 
