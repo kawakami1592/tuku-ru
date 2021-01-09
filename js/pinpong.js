@@ -4,8 +4,9 @@
   }
 
   class Ball {
-    constructor(canvas) {
+    constructor(canvas,game) {
       this.canvas = canvas;
+      this.game = game;
       this.ctx = this.canvas.getContext('2d');
 
       //ボール初期位置
@@ -14,11 +15,12 @@
       this.r = 10;
 
       //移動距離
-      this.vx = rand(3, 6) * (Math.random() < 0.5 ? 1 : -1);
-      this.vy = rand(2, 7);
+      this.vx = rand(2, 4) * (Math.random() < 0.5 ? 1 : -1);
+      this.vy = rand(2, 5);
 
       //失敗フラグ
       this.isMissed = false;
+
     }
 
     //失敗処理
@@ -32,9 +34,9 @@
         this.isMissed = true;
       }
 
+      console.log(this.vx);
       this.x += this.vx;
       this.y += this.vy;
-
       //左右の跳ね返り
       if (this.x - this.r < 0 || this.x + this.r > this.canvas.width){
         this.vx *= -1;
@@ -52,12 +54,23 @@
       this.ctx.fill();
     }
 
+    bounceXY() {
+      this.vx *= -1.1;
+      this.vy *= -1;
+    }
+
     bounceY() {
       this.vy *= -1;
     }
 
     reposition(paddleTop) {
       this.y = paddleTop - this.r;
+    }
+    repositionLeft(paddleLeft) {
+      this.x = paddleLeft - this.r;
+    }
+    repositionRight(ballRight) {
+      this.x = ballRight + this.r;
     }
 
     getX() {
@@ -72,6 +85,13 @@
       return this.r;
     }
 
+    getVX() {
+      this.vx *= 1.1;
+      this.vy *= 1.1;
+      
+    }
+
+
   }
 
   class Paddle {
@@ -81,12 +101,12 @@
       this.ctx = this.canvas.getContext('2d');
 
       //パドルのサイズ
-      this.w = 60;
-      this.h = 16;
+      this.w = 55;
+      this.h = 7;
 
       //初期位置
       this.x = this.canvas.width / 2 - (this.w / 2);
-      this.y = this.canvas.height - 32;
+      this.y = this.canvas.height - 20;
 
       this.mouseX = this.x;
       this.addHandler();
@@ -100,25 +120,63 @@
     }
 
     update(ball) {
-      const ballBottom = ball.getY() + ball.getR();
-      const paddleTop = this.y;
-      const ballTop = ball.getY() - ball.getR();
+      const ballTop     = ball.getY() - ball.getR();
+      const ballBottom  = ball.getY() + ball.getR();
+      const ballLeft    = ball.getX() - ball.getR();
+      const ballRight   = ball.getX() + ball.getR();
+      const ballCenterX = ball.getX();
+      const ballCenterY = ball.getY();
+
+      const paddleTop    = this.y;
       const paddleBottom = this.y + this.h;
-      const ballCenter = ball.getX();
-      const paddleLeft = this.x;
-      const paddleRight = this.x + this.w;
+      const paddleLeft   = this.x;
+      const paddleRight  = this.x + this.w;
+      const paddleCenter = ball.getY();
       
       //当たり判定
-      if (
-        ballBottom > paddleTop &&
-        ballTop < paddleBottom &&
-        ballCenter > paddleLeft &&
-        ballCenter < paddleRight
-      ) {
-       ball.bounceY();
-       ball.reposition(paddleTop);
-       this.game.addScore();
+      if(//下端
+        // ballBottom  > this.y + this.h /2 &&
+        ballCenterY > this.y + this.h /2 &&
+        ballCenterX > paddleLeft &&
+        ballCenterX < paddleRight
+      ){
+        // ball.bounceY();
+        //  ball.reposition(paddleTop);
+        // this.game.addScore();
       }
+      else if(//左端
+        ballCenterY > paddleTop &&
+        ballCenterY < paddleBottom &&
+        ballLeft    < paddleLeft &&
+        ballRight   > paddleLeft
+      ){
+        ball.bounceXY();
+        // ball.repositionLeft(ballLeft);
+        this.game.addScore();
+      }
+      else if(//右端
+        ballCenterY > paddleTop &&
+        ballCenterY < paddleBottom &&
+        ballLeft    < paddleRight &&
+        ballRight   > paddleRight
+      ){
+        ball.bounceXY();
+        // ball.repositionRight(ballRight);
+        this.game.addScore();
+      }
+      else if(//上端
+        ballBottom  > this.y + this.h /2 &&
+        // ballTop     < this.y + this.h /2 &&
+        ballCenterX > paddleLeft &&
+        ballCenterX < paddleRight
+      ){
+        ball.bounceY();
+        //  ball.reposition(paddleTop);
+        this.game.addScore();
+      }
+
+
+      
 
       //キャンバスの大きさ
       const rect = this.canvas.getBoundingClientRect();
@@ -126,18 +184,27 @@
       this.x = this.mouseX - rect.left - (this.w / 2);
 
       //キャンバスの左端に行った時
-      if (this.x < 0) {
-        this.x = 0;
+      if (this.x + this.w/2 < 0) {
+        this.x = -this.w/2;
       }
       //キャンバスの右端に行った時
-      if (this.x + this.w > this.canvas.width) {
-        this.x = this.canvas.width - this.w;
+      if (this.x + this.w /2 > this.canvas.width) {
+        this.x = this.canvas.width - this.w/2;
       }
     }
 
     draw() {
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.x, this.y);
+      this.ctx.lineTo(this.x + this.w, this.y);
+      this.ctx.lineTo(this.x + this.w +5, this.y + this.h/2);
+      this.ctx.lineTo(this.x + this.w, this.y + this.h);
+      this.ctx.lineTo(this.x , this.y + this.h);
+      this.ctx.lineTo(this.x -5 , this.y + this.h/2);
+      this.ctx.closePath();
       this.ctx.fillStyle = '#fdfdfd';
-      this.ctx.fillRect(this.x, this.y, this.w, this.h);
+      this.ctx.fill();
+      // this.ctx.fillRect(this.x, this.y, this.w, this.h);
     }
   }
 
@@ -146,7 +213,7 @@
     constructor(canvas) {
       this.canvas = canvas;
       this.ctx = this.canvas.getContext('2d');
-      this.ball = new Ball(this.canvas);
+      this.ball = new Ball(this.canvas,this);
       this.paddle = new Paddle(this.canvas,this);//キャンバスの情報,Gameインスタンス
       this.loop();
       this.isGameOver = false;
@@ -155,6 +222,10 @@
 
     addScore() {
       this.score++;
+
+      if(this.score % 5 === 0){
+        this.ball.getVX();
+      }
     }
 
     //ゲームループ
@@ -203,6 +274,9 @@
       this.ctx.font = '20px Arial';
       this.ctx.fillStyle = '#fdfdfd';
       this.ctx.fillText(this.score, 10, 25);
+    }
+    getScore(){
+      return this.score;
     }
   }
   
