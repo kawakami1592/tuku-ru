@@ -6,13 +6,13 @@
   class Ball {
     constructor(canvas,game) {
       this.canvas = canvas;
-      this.game = game;
-      this.ctx = this.canvas.getContext('2d');
+      this.game   = game;
+      this.ctx    = this.canvas.getContext('2d');
 
       //ボール初期位置
       this.x = rand(30, 250);
       this.y = 30;
-      this.r = 10;
+      this.r = 7;
 
       //移動距離
       this.vx = rand(2, 4) * (Math.random() < 0.5 ? 1 : -1);
@@ -34,7 +34,6 @@
         this.isMissed = true;
       }
 
-      console.log(this.vx);
       this.x += this.vx;
       this.y += this.vy;
       //左右の跳ね返り
@@ -58,7 +57,9 @@
       this.vx *= -1.1;
       this.vy *= -1;
     }
-
+    bounceX() {
+      this.vx *= -1;
+    }
     bounceY() {
       this.vy *= -1;
     }
@@ -97,8 +98,8 @@
   class Paddle {
     constructor(canvas,game) {
       this.canvas = canvas;
-      this.game = game;
-      this.ctx = this.canvas.getContext('2d');
+      this.game   = game;
+      this.ctx    = this.canvas.getContext('2d');
 
       //パドルのサイズ
       this.w = 55;
@@ -140,6 +141,7 @@
         ballCenterX > paddleLeft &&
         ballCenterX < paddleRight
       ){
+        return;
         // ball.bounceY();
         //  ball.reposition(paddleTop);
         // this.game.addScore();
@@ -208,21 +210,106 @@
     }
   }
 
+  class Bricks{
+    constructor(canvas,game){
+      this.canvas = canvas;
+      this.game   = game;
+      this.ctx    = this.canvas.getContext('2d');
+      this.Brick_H = 10;
+      this.Brick_W = 25;
+      //ブロック初期配置用２重配列
+      this.bricks = [
+        [ 0,  1,  2,  3,  4,  5,  6,  7,  8],
+        [ 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        [18, 19, 20, 21, 22, 23, 24, 25, 26],
+        [27, 28, 29, 30, 31, 32, 33, 34, 35]
+      ];
+      this.brickRow = this.bricks.length;//行数
+      this.brickCol = 8;//列数
+
+      this.BLANK_INDEX = this.brickRow * 8-1;//ブロック数
+
+      //初期位置
+      this.x = 20;
+      this.y = 10;
+
+    }
+
+    update(ball) {
+      const ballTop     = ball.getY() - ball.getR();
+      const ballBottom  = ball.getY() + ball.getR();
+      const ballLeft    = ball.getX() - ball.getR();
+      const ballRight   = ball.getX() + ball.getR();
+      const ballCenterX = ball.getX();
+      const ballCenterY = ball.getY();
+
+      for (let row = 0; row < this.brickRow; row++) {//row=0~3
+        for (let col = 0; col < this.brickCol; col++) {//col=0~７
+          // this.drawBrick(this.bricks[row][col], col, row);
+          const brickTop    = this.y + row * (this.Brick_H +5);
+          const brickBottom = this.y + row * (2 * this.Brick_H +5);
+          const brickLeft   = this.x + col * (this.Brick_W +5);
+          const brickRight  = this.x + col * (2 * this.Brick_W +5);
+
+          //当たり判定
+          if(//上下
+            ballTop     < brickBottom &&
+            ballBottom  > brickTop &&
+            ballCenterX < brickRight &&
+            ballCenterX > brickLeft
+          ){
+            ball.bounceY();
+            // ball.repositionRight(ballRight);
+            this.game.addScore();
+          }
+          else if(//左右
+            ballCenterY < brickBottom &&
+            ballCenterY > brickTop &&
+            ballLeft    < brickRight &&
+            ballRight   > brickLeft
+          ){
+            ball.bounceX();
+            // ball.repositionRight(ballRight);
+            this.game.addScore();
+          }
+        }
+      }
+    }
+
+    //ブロック初期配置用２重配列を回し座標を[row][col]で取得
+    draw() {
+      for (let row = 0; row < this.brickRow; row++) {//row=0~3
+        for (let col = 0; col < this.brickCol; col++) {//col=0~７
+          this.drawBrick(this.bricks[row][col], col, row);
+        }
+      }
+    }
+    drawBrick(n, col, row) {
+      this.ctx.fillStyle = '#fdfdfd';
+      this.ctx.fillRect(
+        this.x + col * (this.Brick_W +5), 
+        this.y + row * (this.Brick_H +5), 
+        this.Brick_W, 
+        this.Brick_H
+      );
+    }
+  }
+
 
   class Game {
     constructor(canvas) {
-      this.canvas = canvas;
-      this.ctx = this.canvas.getContext('2d');
-      this.ball = new Ball(this.canvas,this);
-      this.paddle = new Paddle(this.canvas,this);//キャンバスの情報,Gameインスタンス
-      this.loop();
+      this.canvas     = canvas;
+      this.ctx        = this.canvas.getContext('2d');
+      this.ball       = new Ball(this.canvas,this);
+      this.paddle     = new Paddle(this.canvas,this);//キャンバスの情報,Gameインスタンス
+      this.bricks     = new Bricks(this.canvas,this);
       this.isGameOver = false;
-      this.score = 0;
+      this.score      = 0;
+      this.loop();
     }
 
     addScore() {
       this.score++;
-
       if(this.score % 5 === 0){
         this.ball.getVX();
       }
@@ -248,6 +335,7 @@
       }
       this.ball.update();
       this.paddle.update(this.ball);
+      this.bricks.update(this.ball);
     }
     
     //ゲームの描画
@@ -259,19 +347,20 @@
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ball.draw();
       this.paddle.draw();
+      this.bricks.draw();
       this.drawScore();
     }
 
     //失敗処理
     drawGameOver() {
-      this.ctx.font = '28px "Arial Black"';
+      this.ctx.font      = '28px "Arial Black"';
       this.ctx.fillStyle = 'tomato';
       this.ctx.fillText('GAME OVER', 50, 150);
     }
 
     //得点表示
     drawScore() {
-      this.ctx.font = '20px Arial';
+      this.ctx.font      = '20px Arial';
       this.ctx.fillStyle = '#fdfdfd';
       this.ctx.fillText(this.score, 10, 25);
     }
