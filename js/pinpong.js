@@ -11,7 +11,7 @@
 
       //ボール初期位置
       this.x = rand(30, 250);
-      this.y = 30;
+      this.y = 100;
       this.r = 7;
 
       //移動距離
@@ -206,7 +206,6 @@
       this.ctx.closePath();
       this.ctx.fillStyle = '#fdfdfd';
       this.ctx.fill();
-      // this.ctx.fillRect(this.x, this.y, this.w, this.h);
     }
   }
 
@@ -219,20 +218,20 @@
       this.Brick_W = 25;
       //ブロック初期配置用２重配列
       this.bricks = [
-        [ 0,  1,  2,  3,  4,  5,  6,  7,  8],
-        [ 9, 10, 11, 12, 13, 14, 15, 16, 17],
-        [18, 19, 20, 21, 22, 23, 24, 25, 26],
-        [27, 28, 29, 30, 31, 32, 33, 34, 35]
+        [ 1,1,1,1,1,1,1,1,1,1,],
+        [ 1,1,1,1,1,1,1,1,1,1,],
+        [ 1,1,1,1,1,1,1,1,1,1,],
+        [ 1,1,1,1,1,1,1,1,1,1,],
       ];
       this.brickRow = this.bricks.length;//行数
-      this.brickCol = 8;//列数
-
-      this.BLANK_INDEX = this.brickRow * 8-1;//ブロック数
+      this.brickCol = this.bricks[0].length;//列数
 
       //初期位置
       this.x = 20;
       this.y = 10;
 
+      this.data = [];
+      this.draw();
     }
 
     update(ball) {
@@ -243,56 +242,69 @@
       const ballCenterX = ball.getX();
       const ballCenterY = ball.getY();
 
-      for (let row = 0; row < this.brickRow; row++) {//row=0~3
-        for (let col = 0; col < this.brickCol; col++) {//col=0~７
-          // this.drawBrick(this.bricks[row][col], col, row);
-          const brickTop    = this.y + row * (this.Brick_H +5);
-          const brickBottom = this.y + row * (2 * this.Brick_H +5);
-          const brickLeft   = this.x + col * (this.Brick_W +5);
-          const brickRight  = this.x + col * (2 * this.Brick_W +5);
+      this.data.forEach((brick,i) => {
 
-          //当たり判定
-          if(//上下
-            ballTop     < brickBottom &&
-            ballBottom  > brickTop &&
-            ballCenterX < brickRight &&
-            ballCenterX > brickLeft
-          ){
-            ball.bounceY();
-            // ball.repositionRight(ballRight);
-            this.game.addScore();
-          }
-          else if(//左右
-            ballCenterY < brickBottom &&
-            ballCenterY > brickTop &&
-            ballLeft    < brickRight &&
-            ballRight   > brickLeft
-          ){
-            ball.bounceX();
-            // ball.repositionRight(ballRight);
-            this.game.addScore();
-          }
+        // this.drawBrick(this.bricks[row][col], col, row);
+        const brickTop    = brick.y;
+        const brickBottom = brick.y + this.Brick_H;
+        const brickLeft   = brick.x;
+        const brickRight  = brick.x +  this.Brick_W;
+
+        //当たり判定
+        if(//上下
+          ballTop     < brickBottom &&
+          ballBottom  > brickTop &&
+          ballCenterX < brickRight &&
+          ballCenterX > brickLeft
+        ){
+          ball.bounceY();
+          this.data.splice(i,1);
+
         }
-      }
+        else if(//左右
+          ballCenterY < brickBottom &&
+          ballCenterY > brickTop &&
+          ballLeft    < brickRight &&
+          ballRight   > brickLeft
+        ){
+          ball.bounceX();
+          this.data.splice(i,1);
+        }
+
+      });
     }
 
     //ブロック初期配置用２重配列を回し座標を[row][col]で取得
     draw() {
       for (let row = 0; row < this.brickRow; row++) {//row=0~3
         for (let col = 0; col < this.brickCol; col++) {//col=0~７
-          this.drawBrick(this.bricks[row][col], col, row);
+          if(this.bricks[row][col]){
+            this.data.push({
+              x : this.x + col * this.Brick_W, 
+              y : this.y + row * this.Brick_H, 
+              w : this.Brick_W, 
+              h : this.Brick_H
+            })
+          }
         }
       }
+      this.drawBrick(this.data);
     }
-    drawBrick(n, col, row) {
-      this.ctx.fillStyle = '#fdfdfd';
-      this.ctx.fillRect(
-        this.x + col * (this.Brick_W +5), 
-        this.y + row * (this.Brick_H +5), 
-        this.Brick_W, 
-        this.Brick_H
+    drawBrick(data) {
+      data.forEach(brick => {
+        // this.ctx.fillStyle = '#fdfdfd';
+        this.ctx.strokeStyle = '#fdfdfd';
+        // this.ctx.fillRect(
+        this.ctx.strokeRect(
+        brick.x, 
+        brick.y, 
+        brick.w, 
+        brick.h
       );
+      });
+
     }
+
   }
 
 
@@ -347,7 +359,7 @@
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ball.draw();
       this.paddle.draw();
-      this.bricks.draw();
+      this.bricks.drawBrick(this.bricks.data);
       this.drawScore();
     }
 
