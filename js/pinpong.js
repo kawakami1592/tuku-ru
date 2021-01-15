@@ -1,4 +1,4 @@
-(() => {
+{
   function rand(min, max) {
     return Math.random() * (max - min) + min;
   }
@@ -173,12 +173,9 @@
         ballCenterX < paddleRight
       ){
         ball.bounceY();
-        //  ball.reposition(paddleTop);
+         ball.reposition(paddleTop);
         this.game.addScore();
       }
-
-
-      
 
       //キャンバスの大きさ
       const rect = this.canvas.getBoundingClientRect();
@@ -382,10 +379,18 @@
   }
   
   
-  const canvas = document.getElementById('pinpong');
-  if (typeof canvas.getContext === 'undefined') {
-    return;
-  }
-  
-  new Game(canvas);
-})();
+  // スタートボタン
+  const start = document.getElementById('pinpong_start');
+  start.addEventListener('click', () => {
+
+    const canvas = document.getElementById('pinpong');
+    if (typeof canvas.getContext === 'undefined') {
+      return;
+    }
+    
+    new Game(canvas);
+
+  });
+
+
+}

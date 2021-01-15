@@ -5,8 +5,14 @@
   cursor: pointer;
 }
 
-#pinpong {
+#pinpong,
+#snake {
   background: #222;
+  display: block;
+  margin: 10px auto;
+}
+#pinpong_start,
+#snake_start{
   display: block;
   margin: 10px auto;
 }
