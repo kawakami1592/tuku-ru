@@ -42,10 +42,6 @@
           item.random();
         }
       });
-      // if(this.x === itemX && this.y === itemY) {
-      //   this.tail++;
-      //   item.random();
-      // }
 
       //壁への接触
       if(
@@ -147,16 +143,6 @@
       })
     }
 
-    // random(){
-    //   this.x = Math.floor(Math.random() * this.stage);
-    //   this.y = Math.floor(Math.random() * this.stage);
-    // }
-
-    // draw(){
-    //   this.ctx.fillStyle = 'red';
-    //   this.ctx.fillRect(this.x * this.grid, this.y * this.grid, this.grid -2, this.grid -2);
-    // }
-
     getX() {
       return this.x;
     }
@@ -217,7 +203,7 @@
     drawGameOver() {
       this.ctx.font      = '28px "Arial Black"';
       this.ctx.fillStyle = 'tomato';
-      this.ctx.fillText('GAME OVER', 100, 150);
+      this.ctx.fillText('GAME OVER', 50, 150);
     }
 
   }

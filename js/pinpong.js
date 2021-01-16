@@ -112,6 +112,8 @@
 
       this.mouseX = this.x;
       this.addHandler();
+      this.addHandlerB()
+
     }
 
     //マウスの位置
@@ -119,6 +121,20 @@
       document.addEventListener('mousemove', e => {
         this.mouseX = e.clientX;
       });
+    }
+
+    addHandlerB(){
+      const pinpongLeft = document.getElementById('pinpong_left');
+      const pinpong_right = document.getElementById('pinpong_right');
+      pinpongLeft.addEventListener('click', () => {
+        this.mouseX -= 30;
+        console.log(this.mouseX);
+      });
+      pinpong_right.addEventListener('click', () => {
+        this.mouseX += 30;
+        console.log(this.mouseX);
+      });
+
     }
 
     update(ball){

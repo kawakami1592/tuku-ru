@@ -1,3 +1,4 @@
+/* パズル */
 #puzzle{
   background: pink;
   display: block;
@@ -5,19 +6,32 @@
   cursor: pointer;
 }
 
+/* ピンポン */
 #pinpong,
 #snake {
   background: #222;
   display: block;
   margin: 10px auto;
 }
-
 #pinpong_start,
 #snake_start{
   display: block;
   margin: 10px auto;
 }
+.lr_key{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#pinpong_left,
+#pinpong_right{
+  width: 4rem;
+  height: 4rem;
+  margin: 5px;
+}
 
+/* スネーク */
+.lr_key,
 .cross_key{
   display: flex;
   justify-content: center;
