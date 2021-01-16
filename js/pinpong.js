@@ -112,7 +112,8 @@
 
       this.mouseX = this.x;
       this.addHandler();
-      this.addHandlerB()
+      // this.addHandlerB();
+      this.addHandlerC();
 
     }
 
@@ -134,7 +135,11 @@
         this.mouseX += 30;
         console.log(this.mouseX);
       });
-
+    }
+    addHandlerC(){
+      document.addEventListener('touchmove', e => {
+        this.mouseX = e.clientX;
+      });
     }
 
     update(ball){
