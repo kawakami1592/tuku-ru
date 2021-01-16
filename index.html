@@ -184,10 +184,42 @@
     <div class="grid-13">13</div>
   </div>
 
+
   <div class="canvasbrock">
-    <canvas id="puzzle" width="280" height="280">
-      Canvas not supported.
-    </canvas>
+    
+    <!-- パズル -->
+    <div class="puzzle-menu">
+      <ul>
+        <li data-id="puzzle1" class="tab-selected">パズルLv.1</li>
+        <li data-id="puzzle2" id="puzzle_Lv2_tab">パズルLv.2</li>
+        <li data-id="puzzle3">パズルLv.3</li>
+        <li data-id="puzzle4">パズルLv.4</li>
+      </ul>
+
+      <div class="puzzle-content tab-selected-content" id="puzzle1">
+        <canvas id="puzzle" width="280" height="280">
+          Canvas not supported.
+        </canvas>
+      </div>
+
+      <div class="puzzle-content" id="puzzle2">
+        <canvas id="puzzle_Lv2" width="280" height="280">
+          Canvas not supported.
+        </canvas>
+      </div>
+
+      <div class="puzzle-content" id="puzzle3">
+      </div>
+
+      <div class="puzzle-content" id="puzzle4">
+      </div>
+
+    </div>
+
+
+
+
+
 
     <canvas id="pinpong" width="280" height="280">
       Canvas not supported.

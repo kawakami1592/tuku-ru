@@ -96,8 +96,30 @@
     t++;
     setTimeout(draw, 20);
   }
-
   draw();
+
+
+// パズルタブ
+const tabMenusPuzzle = document.querySelectorAll('.puzzle-menu ul li');
+const tabContentsPuzzle = document.querySelectorAll('.puzzle-content');
+
+tabMenusPuzzle.forEach(tabMenuPuzzle => {
+  tabMenuPuzzle.addEventListener('click', () => {
+    
+    tabMenusPuzzle.forEach(tabMenuAll => {
+      tabMenuAll.classList.remove('tab-selected');
+    });
+    tabMenuPuzzle.classList.add('tab-selected');
+
+    tabContentsPuzzle.forEach(tabContent => {
+      tabContent.classList.remove('tab-selected-content');
+    });
+    document.getElementById(tabMenuPuzzle.dataset.id).classList.add('tab-selected-content');
+  });
+
+});
+
+
 
 
 

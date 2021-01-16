@@ -4,7 +4,7 @@
   // 15パズル
   (() => {
     class Puzzle {
-      constructor(puzzleCanvas, level ,image) {
+      constructor(puzzleCanvas, level ,image){
         this.canvas = puzzleCanvas;
         this.level = level;
         this.ctx = this.canvas.getContext('2d');
@@ -41,7 +41,7 @@
         this.canvas.addEventListener('click', e => {
 
           //クリアフラグ判定
-          if (this.isCompleted === true) {
+          if (this.isCompleted === true){
             return;
           }
 
@@ -56,7 +56,7 @@
           this.render();
 
           //ゲームクリアの判定
-          if (this.isComplete() === true) {
+          if (this.isComplete() === true){
             this.renderGameClear();
             this.isCompleted = true;
           }
@@ -71,17 +71,17 @@
 
       
       //タイル初期配置用２重配列を回し座標を[row][col]で取得
-      render() {
-        for (let row = 0; row < this.BOARD_SIZE; row++) {
-          for (let col = 0; col < this.BOARD_SIZE; col++) {
+      render(){
+        for (let row = 0; row < this.BOARD_SIZE; row++){
+          for (let col = 0; col < this.BOARD_SIZE; col++){
             this.renderTile(this.tiles[row][col], col, row);
           }
         }
       }
 
       //元画像から切り出し、再配置
-      renderTile(n, col, row) {
-        if (n === this.BLANK_INDEX) {
+      renderTile(n, col, row){
+        if (n === this.BLANK_INDEX){
           this.ctx.fillStyle = '#eeeeee';
           this.ctx.fillRect(
             col * this.TILE_SIZE, 
@@ -107,20 +107,20 @@
       }
   
       //値が枠外(0~3)ならtrueを返す
-      isOutside(destCol, destRow) {
+      isOutside(destCol, destRow){
         return (
           destCol < 0 || destCol > this.BOARD_SIZE-1 || destRow < 0 || destRow > this.BOARD_SIZE-1
         );
       }
 
       //初期シャッフル
-      shuffle(n) {
+      shuffle(n){
         //15番の初期値
         let blankCol = this.BOARD_SIZE-1;
         let blankRow = this.BOARD_SIZE-1;
       
         //シャッフル
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < n; i++){
           let destCol;
           let destRow;
 
@@ -145,17 +145,17 @@
       }
 
       //タイルのクリックアクション
-      swapTiles(col, row) {
-        if (this.tiles[row][col] === this.BLANK_INDEX) {
+      swapTiles(col, row){
+        if (this.tiles[row][col] === this.BLANK_INDEX){
           return;
         }
   
         //クリックされたタイルの隣り合うタイルを調べる
-        for (let i = 0; i < this.BOARD_SIZE; i++) {
+        for (let i = 0; i < this.BOARD_SIZE; i++){
           const destCol = col + this.UDLR[i][0];
           const destRow = row + this.UDLR[i][1];
 
-          // switch (i) {
+          // switch (i){
           //   case 0: // up
           //     destCol = col;
           //     destRow = row - 1;
@@ -175,12 +175,12 @@
           // }
 
           //上下左右がキャンバスからはみ出す場合は次のループへスキップする
-          if (this.isOutside(destCol, destRow) === true) {
+          if (this.isOutside(destCol, destRow) === true){
             continue;
           }
   
           //隣り合うタイルが15番なら分割代入で入れ替える
-          if (this.tiles[destRow][destCol] === this.BLANK_INDEX) {
+          if (this.tiles[destRow][destCol] === this.BLANK_INDEX){
             [
               this.tiles[row][col],
               this.tiles[destRow][destCol],
@@ -196,11 +196,11 @@
 
       //クリア判定
       //タイル初期配置用２重配列と比較して値が全てあっていればtrue
-      isComplete() {
+      isComplete(){
         let i = 0;
-        for (let row = 0; row < this.BOARD_SIZE; row++) {
-          for (let col = 0; col < this.BOARD_SIZE; col++) {
-            if (this.tiles[row][col] !== i++) {
+        for (let row = 0; row < this.BOARD_SIZE; row++){
+          for (let col = 0; col < this.BOARD_SIZE; col++){
+            if (this.tiles[row][col] !== i++){
               return false;
             }
           }
@@ -208,7 +208,7 @@
         return true;
       }
       //クリア画面
-      renderGameClear() {
+      renderGameClear(){
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = '28px Arial';
@@ -218,13 +218,24 @@
 
     }
 
-
+    // パズルLv1生成
     const puzzleCanvas = document.getElementById('puzzle');
-    if (typeof puzzleCanvas.getContext === 'undefined') {
+    if (typeof puzzleCanvas.getContext === 'undefined'){
       return;
     }
-    //インスタンス生成
     new Puzzle(puzzleCanvas ,70 ,'images/15puzzle.png');
+
+
+    // パズルLv２生成
+    const start = document.getElementById('puzzle_Lv2_tab');
+    start.addEventListener('click', () => {
+      const puzzleCanvas = document.getElementById('puzzle_Lv2');
+      if (typeof puzzleCanvas.getContext === 'undefined'){
+        return;
+      }
+      //インスタンス生成
+      new Puzzle(puzzleCanvas ,70 ,'images/pexels-eftodii-aurelia-735423.jpg');
+    });
 
   })();
 

@@ -1,5 +1,6 @@
 /* パズル */
-#puzzle{
+#puzzle,
+#puzzle_Lv2{
   background: pink;
   display: block;
   margin: 10px auto;

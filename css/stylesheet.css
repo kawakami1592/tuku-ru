@@ -276,15 +276,18 @@ details[open] {
 }
 
 /* タブメニュー */
-.tab-menu{
+.tab-menu,
+.puzzle-menu{
   margin-top: 10px;
 }
-.tab-menu ul{
+.tab-menu ul,
+.puzzle-menu ul{
   display:flex;
   justify-content: space-around;
   list-style: none;
 }
-.tab-menu ul li{
+.tab-menu ul li,
+.puzzle-menu ul li{
   width:20%;
   height:2rem;
   border-radius: 5px 5px 0 0;
@@ -293,7 +296,8 @@ details[open] {
   text-align: center;
   cursor: pointer;
 }
-.tab-content{
+.tab-content,
+.puzzle-content{
   width:100%;
   min-height:300px;
   padding:10px;
