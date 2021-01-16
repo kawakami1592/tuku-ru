@@ -11,8 +11,27 @@
   display: block;
   margin: 10px auto;
 }
+
 #pinpong_start,
 #snake_start{
   display: block;
   margin: 10px auto;
+}
+
+.cross_key{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cross_key .up_doun_key{
+  display: flex;
+  flex-direction: column;
+}
+#snake_left,
+#snake_up,
+#snake_down,
+#snake_right{
+  width: 4rem;
+  height: 4rem;
+  margin: 5px;
 }

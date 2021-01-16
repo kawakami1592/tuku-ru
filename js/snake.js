@@ -92,6 +92,24 @@
             break;
         }
       });
+
+      const snakeLeft = document.getElementById('snake_left');
+      const snake_up = document.getElementById('snake_up');
+      const snake_down = document.getElementById('snake_down');
+      const snake_right = document.getElementById('snake_right');
+
+      snakeLeft.addEventListener('click', () => {
+        this.dx = -1;this.dy = 0;
+      });
+      snake_up.addEventListener('click', () => {
+        this.dx = 0;this.dy = -1;
+      });
+      snake_down.addEventListener('click', () => {
+        this.dx = 0;this.dy = 1;
+      });
+      snake_right.addEventListener('click', () => {
+        this.dx = 1;this.dy = 0;
+      });
     }
 
     //失敗処理
