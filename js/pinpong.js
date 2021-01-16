@@ -1,10 +1,10 @@
 {
-  function rand(min, max) {
+  function rand(min, max){
     return Math.random() * (max - min) + min;
   }
 
   class Ball {
-    constructor(canvas,game) {
+    constructor(canvas,game){
       this.canvas = canvas;
       this.game   = game;
       this.ctx    = this.canvas.getContext('2d');
@@ -24,11 +24,11 @@
     }
 
     //失敗処理
-    getMissedStatus() {
+    getMissedStatus(){
       return this.isMissed;
     }
 
-    update() {
+    update(){
 
       if (this.y - this.r > this.canvas.height){
         this.isMissed = true;
@@ -46,55 +46,55 @@
       }
     }
   
-    draw() {
+    draw(){
       this.ctx.beginPath();
       this.ctx.fillStyle = '#fdfdfd';
       this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
       this.ctx.fill();
     }
 
-    bounceXY() {
+    bounceXY(){
       this.vx *= -1.1;
       this.vy *= -1;
     }
-    bounceX() {
+    bounceX(){
       this.vx *= -1;
     }
-    bounceY() {
+    bounceY(){
       this.vy *= -1;
     }
 
-    reposition(paddleTop) {
+    reposition(paddleTop){
       this.y = paddleTop - this.r;
     }
-    repositionLeft(paddleLeft) {
+    repositionLeft(paddleLeft){
       this.x = paddleLeft - this.r;
     }
-    repositionRight(ballRight) {
+    repositionRight(ballRight){
       this.x = ballRight + this.r;
     }
 
-    getX() {
+    getX(){
       return this.x;
     }
 
-    getY() {
+    getY(){
       return this.y;
     }
 
-    getR() {
+    getR(){
       return this.r;
     }
 
-    getVX() {
-      this.vx *= 1.1;
-      this.vy *= 1.1;
+    getVX(){
+      this.vx *= 1.05;
+      this.vy *= 1.05;
     }
 
   }
 
   class Paddle {
-    constructor(canvas,game) {
+    constructor(canvas,game){
       this.canvas = canvas;
       this.game   = game;
       this.ctx    = this.canvas.getContext('2d');
@@ -112,18 +112,16 @@
 
       this.mouseX = this.x;
       this.addHandler();
-      console.log("ここ");
-      console.log(this.mouseX);
     }
 
     //マウスの位置
-    addHandler() {
+    addHandler(){
       document.addEventListener('mousemove', e => {
         this.mouseX = e.clientX;
       });
     }
 
-    update(ball) {
+    update(ball){
       const ballTop     = ball.getY() - ball.getR();
       const ballBottom  = ball.getY() + ball.getR();
       const ballLeft    = ball.getX() - ball.getR();
@@ -145,9 +143,6 @@
         ballCenterX < paddleRight
       ){
         return;
-        // ball.bounceY();
-        //  ball.reposition(paddleTop);
-        // this.game.addScore();
       }
       else if(//左端
         ballCenterY > paddleTop &&
@@ -180,23 +175,20 @@
         this.game.addScore();
       }
 
-      //キャンバスの大きさ
-      // const rect = this.canvas.getBoundingClientRect();
-
       //パドルの左端=マウスの位置-キャンバスの左端の座標-パドルの幅/2
       this.x = this.mouseX - this.rect.left - (this.w / 2);
 
       //キャンバスの左端に行った時
-      if (this.x + this.w/2 < 0) {
+      if (this.x + this.w/2 < 0){
         this.x = -this.w/2;
       }
       //キャンバスの右端に行った時
-      if (this.x + this.w /2 > this.canvas.width) {
+      if (this.x + this.w /2 > this.canvas.width){
         this.x = this.canvas.width - this.w/2;
       }
     }
 
-    draw() {
+    draw(){
       this.ctx.beginPath();
       this.ctx.moveTo(this.x, this.y);
       this.ctx.lineTo(this.x + this.w, this.y);
@@ -235,7 +227,7 @@
       this.draw();
     }
 
-    update(ball) {
+    update(ball){
       const ballTop     = ball.getY() - ball.getR();
       const ballBottom  = ball.getY() + ball.getR();
       const ballLeft    = ball.getX() - ball.getR();
@@ -260,6 +252,8 @@
         ){
           ball.bounceY();
           this.data.splice(i,1);
+          this.game.addScore();
+          this.game.addScore();
 
         }
         else if(//左右
@@ -270,15 +264,17 @@
         ){
           ball.bounceX();
           this.data.splice(i,1);
+          this.game.addScore();
+          this.game.addScore();
         }
 
       });
     }
 
     //ブロック初期配置用２重配列を回し座標を[row][col]で取得
-    draw() {
-      for (let row = 0; row < this.brickRow; row++) {//row=0~3
-        for (let col = 0; col < this.brickCol; col++) {//col=0~７
+    draw(){
+      for (let row = 0; row < this.brickRow; row++){//row=0~3
+        for (let col = 0; col < this.brickCol; col++){//col=0~７
           if(this.bricks[row][col]){
             this.data.push({
               x : this.x + col * this.Brick_W, 
@@ -291,25 +287,25 @@
       }
       this.drawBrick(this.data);
     }
-    drawBrick(data) {
+
+    drawBrick(data){
       data.forEach(brick => {
         // this.ctx.fillStyle = '#fdfdfd';
         this.ctx.strokeStyle = '#fdfdfd';
         // this.ctx.fillRect(
         this.ctx.strokeRect(
-        brick.x, 
-        brick.y, 
-        brick.w, 
-        brick.h
-      );
+          brick.x, 
+          brick.y, 
+          brick.w, 
+          brick.h
+        );
       });
-
     }
 
   }
 
   class Game {
-    constructor(canvas) {
+    constructor(canvas){
       this.canvas     = canvas;
       this.ctx        = this.canvas.getContext('2d');
       this.ball       = new Ball(this.canvas,this);
@@ -320,16 +316,28 @@
       this.loop();
     }
 
-    addScore() {
+    addScore(){
       this.score++;
+      if(this.score % 5 === 0){
+        this.ball.getVX();
+      }
+    }
+    addScoreDou(){
+      this.score += 2;
+      if(this.score % 5 === 0){
+        this.ball.getVX();
+      }
+    }
+    addScoreTri(){
+      this.score += 3;
       if(this.score % 5 === 0){
         this.ball.getVX();
       }
     }
 
     //ゲームループ
-    loop() {
-      if (this.isGameOver) {
+    loop(){
+      if (this.isGameOver){
           return;
         }
       this.update();
@@ -341,8 +349,8 @@
     }
     
     //ゲームの情報更新
-    update() {
-      if (this.ball.getMissedStatus()) {
+    update(){
+      if (this.ball.getMissedStatus()){
         this.isGameOver = true;
       }
       this.ball.update();
@@ -351,8 +359,8 @@
     }
     
     //ゲームの描画
-    draw() {
-      if (this.isGameOver) {
+    draw(){
+      if (this.isGameOver){
         this.drawGameOver();
         return;
       }
@@ -364,14 +372,14 @@
     }
 
     //失敗処理
-    drawGameOver() {
+    drawGameOver(){
       this.ctx.font      = '28px "Arial Black"';
       this.ctx.fillStyle = 'tomato';
       this.ctx.fillText('GAME OVER', 50, 150);
     }
 
     //得点表示
-    drawScore() {
+    drawScore(){
       this.ctx.font      = '20px Arial';
       this.ctx.fillStyle = '#fdfdfd';
       this.ctx.fillText(this.score, 10, 25);
@@ -384,15 +392,11 @@
   // スタートボタン
   const start = document.getElementById('pinpong_start');
   start.addEventListener('click', () => {
-
     const canvas = document.getElementById('pinpong');
-    if (typeof canvas.getContext === 'undefined') {
+    if (typeof canvas.getContext === 'undefined'){
       return;
     }
-    
     new Game(canvas);
-
   });
-
 
 }

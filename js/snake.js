@@ -24,6 +24,7 @@
     update(item){
       const itemX = item.getX();
       const itemY = item.getY();
+      const getItems = item.getItems();
 
       //蛇の体
       this.body.push({
@@ -33,12 +34,20 @@
       this.x += this.dx;
       this.y += this.dy;
 
-      if(this.x === itemX && this.y === itemY) {
-        this.tail++;
-        console.log(this.tail);
-        item.random();
-      }
+      //アイテムとの接触
+      getItems.forEach((getItem,i) => {
+        if(this.x === getItem.x && this.y === getItem.y) {
+          this.tail++;
+          item.useItem(i);
+          item.random();
+        }
+      });
+      // if(this.x === itemX && this.y === itemY) {
+      //   this.tail++;
+      //   item.random();
+      // }
 
+      //壁への接触
       if(
         this.x < 0
         || this.y < 0
@@ -54,7 +63,7 @@
       this.ctx.fillStyle = 'green';
       this.body.forEach((obj) => {
         this.ctx.fillRect(obj.x * this.grid, obj.y * this.grid, this.grid-2, this.grid-2);
-         //自分自身に接触したら最初に戻る
+         //自身への接触
         if(this.x === obj.x && this.y === obj.y){
           this.isMissed = true;
         }
@@ -97,26 +106,52 @@
       this.grid   = grid;
       this.stage  = stage;
       this.ctx    = this.canvas.getContext('2d');
-      this.x = Math.floor(Math.random() * this.stage);
-      this.y = Math.floor(Math.random() * this.stage);
-
+      this.itemQty = 2;
+      this.items = [];
+      this.random();
     }
 
     random(){
-      this.x = Math.floor(Math.random() * this.stage);
-      this.y = Math.floor(Math.random() * this.stage);
+      for (let i = 0; i < this.itemQty; i++){
+        this.x = Math.floor(Math.random() * this.stage);
+        this.y = Math.floor(Math.random() * this.stage);
+        this.items.push({
+          x : this.x,
+          y : this.y
+        })
+      }
     }
 
     draw(){
+      this.items.forEach((item,i) => {
       this.ctx.fillStyle = 'red';
-      this.ctx.fillRect(this.x * this.grid, this.y * this.grid, this.grid -2, this.grid -2);
+      this.ctx.fillRect(item.x * this.grid, item.y * this.grid, this.grid -2, this.grid -2);
+      })
     }
+
+    // random(){
+    //   this.x = Math.floor(Math.random() * this.stage);
+    //   this.y = Math.floor(Math.random() * this.stage);
+    // }
+
+    // draw(){
+    //   this.ctx.fillStyle = 'red';
+    //   this.ctx.fillRect(this.x * this.grid, this.y * this.grid, this.grid -2, this.grid -2);
+    // }
 
     getX() {
       return this.x;
     }
     getY() {
       return this.y;
+    }
+    getItems(){
+      return this.items;
+    }
+
+    useItem(i){
+      this.items.splice(i,1);
+
     }
   }
 
