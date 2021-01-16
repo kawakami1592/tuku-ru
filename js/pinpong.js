@@ -89,9 +89,7 @@
     getVX() {
       this.vx *= 1.1;
       this.vy *= 1.1;
-      
     }
-
 
   }
 
@@ -105,12 +103,17 @@
       this.w = 55;
       this.h = 7;
 
+      //キャンバスの大きさ
+      this.rect = this.canvas.getBoundingClientRect();
+
       //初期位置
-      this.x = this.canvas.width / 2 - (this.w / 2);
+      this.x = this.rect.left + this.canvas.width / 2;
       this.y = this.canvas.height - 20;
 
       this.mouseX = this.x;
       this.addHandler();
+      console.log("ここ");
+      console.log(this.mouseX);
     }
 
     //マウスの位置
@@ -178,9 +181,10 @@
       }
 
       //キャンバスの大きさ
-      const rect = this.canvas.getBoundingClientRect();
+      // const rect = this.canvas.getBoundingClientRect();
+
       //パドルの左端=マウスの位置-キャンバスの左端の座標-パドルの幅/2
-      this.x = this.mouseX - rect.left - (this.w / 2);
+      this.x = this.mouseX - this.rect.left - (this.w / 2);
 
       //キャンバスの左端に行った時
       if (this.x + this.w/2 < 0) {
@@ -304,7 +308,6 @@
 
   }
 
-
   class Game {
     constructor(canvas) {
       this.canvas     = canvas;
@@ -377,7 +380,6 @@
       return this.score;
     }
   }
-  
   
   // スタートボタン
   const start = document.getElementById('pinpong_start');
