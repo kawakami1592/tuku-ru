@@ -128,10 +128,10 @@
       const pinpongLeft = document.getElementById('pinpong_left');
       const pinpong_right = document.getElementById('pinpong_right');
       pinpongLeft.addEventListener('click', () => {
-        this.mouseX -= 20;
+        this.mouseX -= 25;
       });
       pinpong_right.addEventListener('click', () => {
-        this.mouseX += 20;
+        this.mouseX += 25;
       });
     }
     addHandlerTouch(){
