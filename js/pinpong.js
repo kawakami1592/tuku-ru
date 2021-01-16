@@ -15,8 +15,8 @@
       this.r = 7;
 
       //移動距離
-      this.vx = rand(2, 4) * (Math.random() < 0.5 ? 1 : -1);
-      this.vy = rand(2, 5);
+      this.vx = rand(1, 4) * (Math.random() < 0.5 ? 1 : -1);
+      this.vy = rand(1, 3);
 
       //失敗フラグ
       this.isMissed = false;
@@ -112,8 +112,8 @@
 
       this.mouseX = this.x;
       this.addHandler();
-      // this.addHandlerB();
-      this.addHandlerC();
+      this.addHandlerBtn();
+      this.addHandlerTouch();
 
     }
 
@@ -124,22 +124,24 @@
       });
     }
 
-    addHandlerB(){
+    addHandlerBtn(){
       const pinpongLeft = document.getElementById('pinpong_left');
       const pinpong_right = document.getElementById('pinpong_right');
       pinpongLeft.addEventListener('click', () => {
-        this.mouseX -= 30;
-        console.log(this.mouseX);
+        this.mouseX -= 20;
       });
       pinpong_right.addEventListener('click', () => {
-        this.mouseX += 30;
-        console.log(this.mouseX);
+        this.mouseX += 20;
       });
     }
-    addHandlerC(){
-      document.addEventListener('touchmove', e => {
-        this.mouseX = e.clientX;
+    addHandlerTouch(){
+      document.addEventListener('touchstart',() => {
+        this.mouseX = event.changedTouches[0].clientX;
       });
+      document.addEventListener('touchmove',(e) => {
+        e.preventDefault();
+        this.mouseX = event.changedTouches[0].clientX;
+      },{ passive: false });
     }
 
     update(ball){
