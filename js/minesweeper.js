@@ -17,7 +17,7 @@
       //   [1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1],
       //   [1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1]
       // ];
-      this.tiles = [//1:タイル　2：爆弾
+      this.tiles = [//1:タイル 2:爆弾
         [1 ,1 ,1 ,1 ,1 ],
         [1 ,2 ,1 ,2 ,1 ],
         [1 ,1 ,1 ,1 ,1 ],
@@ -47,39 +47,94 @@
         //クリック位置からタイルの座標を特定
         const col = Math.floor((e.clientX - rect.left) / this.tileSize);
         const row = Math.floor((e.clientY - rect.top) / this.tileSize);
-
-        this.swapTiles(col, row);
+        console.log(col, row);
+        this.search(col, row);
 
       });
     }
 
 
       //タイルのクリックアクション
-      swapTiles(col, row){
+      search(col, row){
         if(this.tiles[row][col] === 2){
           console.log('ここは２');
           // this.isMissed = true;
         }else{
-          // this.tiles[row-1][col-1]
-          // this.tiles[row][col-1]
-          // this.tiles[row+1][col-1]
-
-          // this.tiles[row-1][col]
-          // this.tiles[row][col]
-          // this.tiles[row+1][col]
-
-          // this.tiles[row-1][col+1]
-          // this.tiles[row][col+1]
-          // this.tiles[row+1][col+1]
           let t = 0;
-          for(let a=row-1; a<=row+1; a++) {
-            for(let b=col-1; b<=col+1; b++) {
-              t += this.tiles[a][b] -1;
+
+          if(row === 0 && col === 0){//左上
+            for(let a = row; a <= row +1; a++) {
+              for(let b = col; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
             }
           }
+          else if(row === 0 && col === this.tileCol -1){//右上
+            for(let a = row; a <= row +1; a++) {
+              for(let b = col -1; b <= col; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(row === this.tileRow -1 && col === 0){//左下
+            for(let a = row -1; a <= row; a++) {
+              for(let b = col; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(row === this.tileRow -1 && col === this.tileCol -1){//右下
+            for(let a = row -1; a <= row; a++) {
+              for(let b = col -1; b <= col; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(row === 0){//上
+            for(let a = row; a <= row +1; a++) {
+              for(let b = col -1; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(row === this.tileRow -1){//下
+            for(let a = row -1; a <= row; a++) {
+              for(let b = col -1; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(col === 0){//左
+            for(let a = row -1; a <= row +1; a++) {
+              for(let b = col; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else if(col === this.tileCol -1){//右
+            for(let a = row -1; a <= row +1; a++) {
+              for(let b = col -1; b <= col; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+          else{
+            for(let a = row -1; a <= row +1; a++) {
+              for(let b = col -1; b <= col +1; b++) {
+                t += this.tiles[a][b] -1;
+              }
+            }
+          }
+
           console.log(t);
-          
+          this.searchResult(t,col, row);
         }
+      }
+
+      searchResult(t,col, row){
+        // this.ctx.font      = '28px "Arial Black"';
+        this.ctx.fillStyle = '#fdfdfd';
+        this.ctx.fillText(t, 50, 150);
       }
 
     update(){
