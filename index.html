@@ -192,7 +192,7 @@
       <ul>
         <li data-id="puzzle1" class="tab-selected">パズルLv.1</li>
         <li data-id="puzzle2" id="puzzle_Lv2_tab">パズルLv.2</li>
-        <li data-id="puzzle3">パズルLv.3</li>
+        <li data-id="puzzle3" id="puzzle_Lv3_tab">パズルLv.3</li>
         <li data-id="puzzle4">パズルLv.4</li>
       </ul>
 
@@ -209,6 +209,9 @@
       </div>
 
       <div class="puzzle-content" id="puzzle3">
+        <canvas id="puzzle_Lv3" width="280" height="280">
+          Canvas not supported.
+        </canvas>
       </div>
 
       <div class="puzzle-content" id="puzzle4">
@@ -244,13 +247,18 @@
       <button id="snake_right">&#65310;</button>
     </div>
 
+    <canvas id="minesweeper" width="280" height="280">
+      Canvas not supported.
+    </canvas>
+    <button id="minesweeper_start">START</button>
+
   </div>
 
 
   <footer>
     <details>
       <summary>Adobe Photoshop</summary>
-      画像編集ソフト。写真やイラスト、3Dアートワークの作成、webサイトやモバイルアプリのデザイン、動画編集や描画などはPhotoshopで。
+      
     </details>
   </footer>
 
@@ -264,6 +272,7 @@
   <script src="js/puzzle.js"></script>
   <script src="js/pinpong.js"></script>
   <script src="js/snake.js"></script>
+  <script src="js/minesweeper.js"></script>
   <script src="js/myscript.js"></script>
 
 </body>

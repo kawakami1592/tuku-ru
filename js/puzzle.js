@@ -223,13 +223,23 @@
     if (typeof puzzleCanvas.getContext === 'undefined'){
       return;
     }
-    new Puzzle(puzzleCanvas ,70 ,'images/15puzzle.png');
-
+    new Puzzle(puzzleCanvas ,10 ,'images/15puzzle.png');
 
     // パズルLv２生成
-    const start = document.getElementById('puzzle_Lv2_tab');
-    start.addEventListener('click', () => {
+    const start2 = document.getElementById('puzzle_Lv2_tab');
+    start2.addEventListener('click', () => {
       const puzzleCanvas = document.getElementById('puzzle_Lv2');
+      if (typeof puzzleCanvas.getContext === 'undefined'){
+        return;
+      }
+      //インスタンス生成
+      new Puzzle(puzzleCanvas ,70 ,'images/15puzzle.png');
+    });
+
+    // パズルLv3生成
+    const start3 = document.getElementById('puzzle_Lv3_tab');
+    start3.addEventListener('click', () => {
+      const puzzleCanvas = document.getElementById('puzzle_Lv3');
       if (typeof puzzleCanvas.getContext === 'undefined'){
         return;
       }

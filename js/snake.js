@@ -1,5 +1,4 @@
 {
- 
   class Snake{
     constructor(canvas,grid,stage){
       this.canvas = canvas;
@@ -179,7 +178,7 @@
       this.draw();
 
       //10フレームでゲームを描画
-      setTimeout(() => {this.loop();}, 1000/10);
+      setTimeout(() => {this.loop();}, 1000/7);
     }
 
     update(){

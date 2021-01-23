@@ -1,6 +1,7 @@
 /* パズル */
 #puzzle,
-#puzzle_Lv2{
+#puzzle_Lv2,
+#puzzle_Lv3{
   background: pink;
   display: block;
   margin: 10px auto;
@@ -9,7 +10,8 @@
 
 /* ピンポン */
 #pinpong,
-#snake {
+#snake,
+#minesweeper{
   background: #222;
   display: block;
   margin: 10px auto;

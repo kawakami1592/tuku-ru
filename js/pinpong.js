@@ -15,8 +15,8 @@
       this.r = 7;
 
       //移動距離
-      this.vx = rand(1, 4) * (Math.random() < 0.5 ? 1 : -1);
-      this.vy = rand(1, 3);
+      this.vx = rand(1, 2) * (Math.random() < 0.5 ? 1 : -1);
+      this.vy = rand(1, 2);
 
       //失敗フラグ
       this.isMissed = false;
