@@ -4,18 +4,12 @@
       this.canvas = canvas;
       this.game = game;
       this.ctx    = this.canvas.getContext('2d');
-      
-      this.UDLR = [
-        [0, -1], // up
-        [0, 1], // down
-        [-1, 0], // left
-        [1, 0], // right
-      ];
+
       this.tileRow = 10;//行数
       this.tileCol = 10;//列数
 
       this.tiles = [];
-      this.max = 4; 
+      this.max = 5; 
 
       this.getTiles(this.tileRow,this.tileCol,this.max)
       console.log(this.tiles);
@@ -169,14 +163,11 @@
             this.tileSize,
             this.tileSize
           );
+
         }
       }
     }
 
-    //失敗処理
-    getMissedStatus() {
-      return this.isMissed;
-    }
   }
 
   class Game {

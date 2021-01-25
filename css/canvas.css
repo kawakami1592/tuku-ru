@@ -17,7 +17,8 @@
   margin: 10px auto;
 }
 #pinpong_start,
-#snake_start{
+#snake_start,
+#minesweeper_start{
   display: block;
   margin: 10px auto;
 }
