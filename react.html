@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>React Practice</title>
+  <link rel="stylesheet" href="css/react.css">
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- React の本体 -->
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- React の結果をブラウザの DOM に反映させていくためのライブラリ -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- JSX や JavaScript の新しい文法を使うための Babel というライブラリ -->
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    (() => {
+
+      // function Counter(props) {
+      //   return <li style={{backgroundColor:props.color}}>0</li>;
+      // }
+
+      class Counter extends React.Component {
+        render() {
+          return (
+            <li style={{backgroundColor:this.props.color}}>
+              0
+            </li>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div className="container">
+          <ul>
+            <Counter color="tomato"/>
+            <Counter color="skyblue"/>
+            <Counter color="limegreen"/>
+          </ul>
+        </div>,
+        document.getElementById('root')
+      );
+    })();
+  </script>
+</body>
+</html>
