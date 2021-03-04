@@ -22,7 +22,7 @@
             {props.counter.id}-({props.counter.count})
           </li>
         );
-      }
+    }
 
       function CounterList(props) {
         const counters = props.counters.map(counter => {
@@ -58,17 +58,32 @@
         }
         countUp(counter) {
           this.setState(prevState => {
+
             const counters = prevState.counters.map(counter => {
               return {id: counter.id, count: counter.count, color: counter.color};
+              // counters: [
+              //   {id: 'A', count: 0, color: 'tomato'},
+              //   {id: 'B', count: 0, color: 'skyblue'},
+              //   {id: 'C', count: 0, color: 'limegreen'},
+              //   {id: 'D', count: 0, color: 'gray'},
+              //   {id: 'E', count: 0, color: 'pink'}
+              // ]
+              //の20配列が入る
             });
+
             const pos = counters.map(counter => {
               return counter.id;
             }).indexOf(counter.id);
+
             counters[pos].count++;
+
             return {
+              //this.stateの counters: を書き換える
               counters: counters,
+              //this.stateの total: を書き換える
               total: prevState.total + 1
             };
+
           });
         }
         render() {
