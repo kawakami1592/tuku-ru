@@ -122,8 +122,6 @@ tabMenusPuzzle.forEach(tabMenuPuzzle => {
 
 
 
-
-
 //   var photo1 = $('.photo1');
 
 //   var photoNumber =0;
