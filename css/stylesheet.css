@@ -14,10 +14,21 @@ header{
   top:0;
   z-index: 3;
 }
-header h1{
+header h1.name{
   font-family: 'Amatic SC', cursive;
   font-size: 3rem;
-  
+  border-bottom: 5px solid #000;
+  position: relative;
+}
+
+.name::after{
+  content: '';
+  display: block;
+  width: 30%;
+  height: 5px;
+  position:absolute;
+  left: 0;
+  background: yellow;
 }
 
 .body-main{
@@ -223,7 +234,27 @@ label .fa-angle-double-down{
   padding: 12px 0;
   margin: 16px auto;
   background: cyan;
+  position: relative;
+  transition: all .3s ease;
+  transform: skew(0);
 }
+.icon {
+  transition: all .3s ease;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
+#open:hover .icon {
+  transition: all .3s ease;
+  right:-30px;
+}
+#open:hover {
+  transition: all .3s ease;
+  background: springgreen;
+  transform: skew(-15deg);
+}
+
+
 #mask {
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
