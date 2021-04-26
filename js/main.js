@@ -1,6 +1,30 @@
 'use strict';
 
 {
+  const animationTargetElements = document.querySelectorAll('.text-animation');
+
+  for(let i = 0; i < animationTargetElements.length; i++){
+    const targetElement = animationTargetElements[i];
+    
+    const texts = targetElement.textContent;
+    const textsArr = [];
+    const oneCharacter = texts.split('');
+    targetElement.textContent = '';
+
+    for(let j = 0; j < oneCharacter.length; j++){
+      if(oneCharacter[j] ===' '){
+        textsArr.push(' ')
+      }else{
+        textsArr.push('<span><span style="animation-delay:' + ((j*0.1)+.3) + 's;">' + oneCharacter[j] + '<span><span>');
+      }
+    }
+    for(let k = 0; k < oneCharacter.length; k++){
+      targetElement.innerHTML += textsArr[k]
+    }
+    console.log(targetElement);
+  }
+
+
 // ハンバーガーメニュー
   const navBtn = document.getElementById('nav-btn');
   const hamburger = document.getElementById('hamburger')

@@ -12,7 +12,7 @@ header{
   align-items: center;
   position: fixed;
   top:0;
-  z-index: 3;
+  z-index: -1;
 }
 header h1.name{
   font-family: 'Amatic SC', cursive;
@@ -64,6 +64,54 @@ header h1.name{
   100% {transform: translateX(-50%);}
 }
 
+.text-animation-box{
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-animation{
+  color: #fff;
+  font-size: 3.5rem;
+  letter-spacing: .05em;
+}
+
+@keyframes showTextFromTop{
+  0%{
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes showTextFromBottom{
+  0%{
+    transform: translateY(100%);
+  }
+  100%{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.text-animation span{
+  display: inline-block;
+}
+
+.text-animation > span{
+  overFlow: hidden;
+}
+
+.text-animation > span:nth-of-type(odd) > span{
+  animation: showTextFromTop ease-out 1.5s backwards;
+}
+
+.text-animation > span:nth-of-type(even) > span{
+  animation: showTextFromBottom ease-out 1.5s backwards;
+}
 
 .show-scroll{
   height:200px;
@@ -193,7 +241,7 @@ label .fa-angle-double-down{
 
 
 /* ポップアップメッセージ */
-.popup-message {
+/* .popup-message {
   width: 50%;
   height:200px;
   padding: 8px 16px;
@@ -222,7 +270,7 @@ label .fa-angle-double-down{
     opacity: 0;
     pointer-events: none;
   }
-}
+} */
 
 /* モーダルウィンドウ */
 #open, #close {
