@@ -44,7 +44,7 @@ header h1.name{
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
+/* スライドショー */
 .slideshow{
   overflow: hidden;
 }
@@ -64,6 +64,7 @@ header h1.name{
   100% {transform: translateX(-50%);}
 }
 
+/* テキストアニメーション */
 .text-animation-box{
   height: 70%;
   display: flex;

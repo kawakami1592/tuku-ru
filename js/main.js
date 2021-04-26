@@ -1,6 +1,7 @@
 'use strict';
 
 {
+  //テキストアニメーション
   const animationTargetElements = document.querySelectorAll('.text-animation');
 
   for(let i = 0; i < animationTargetElements.length; i++){
