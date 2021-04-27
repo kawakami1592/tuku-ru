@@ -1,6 +1,27 @@
 'use strict';
 
 {
+  //ヘッダー
+  const header = document.querySelector('header');
+  
+  document.addEventListener("scroll",function(){
+    const topBounding = document.querySelector('.top').getBoundingClientRect().bottom;
+    const top = document.querySelector('.top').getBoundingClientRect().top;
+
+    if(topBounding < 0){
+      header.classList.add('header-active');
+
+    }else if(top < 0){
+        header.classList.add('header-hide');
+        header.classList.remove('header-active');
+
+    }else{
+      header.classList.remove('header-active');
+      header.classList.remove('header-hide');
+    }
+  })
+
+
   //テキストアニメーション
   const animationTargetElements = document.querySelectorAll('.text-animation');
 
@@ -22,7 +43,6 @@
     for(let k = 0; k < oneCharacter.length; k++){
       targetElement.innerHTML += textsArr[k]
     }
-    console.log(targetElement);
   }
 
 

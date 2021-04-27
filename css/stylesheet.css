@@ -3,6 +3,7 @@
   font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
   box-sizing:border-box;
 }
+
 header{
   height:75px;
   width: 100vw;
@@ -13,7 +14,16 @@ header{
   position: fixed;
   top:0;
   z-index: -1;
+  transition:.5s;
 }
+.header-hide{
+  opacity: 0;
+}
+.header-active{
+  z-index: 1;
+  opacity: 1;
+}
+
 header h1.name{
   font-family: 'Amatic SC', cursive;
   font-size: 3rem;
