@@ -1,6 +1,7 @@
 'use strict';
 
 {
+
   //ヘッダー
   const header = document.querySelector('header');
   
@@ -10,10 +11,15 @@
 
     if(topBounding < 0){
       header.classList.add('header-active');
+      header.classList.add('header-hide');
+
+      setTimeout(function(){
+        header.classList.remove('header-active');
+      }, 2000);
 
     }else if(top < 0){
-        header.classList.add('header-hide');
-        header.classList.remove('header-active');
+      header.classList.add('header-hide');
+      header.classList.remove('header-active');
 
     }else{
       header.classList.remove('header-active');
