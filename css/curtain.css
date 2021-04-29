@@ -83,16 +83,10 @@
 }
 
 @keyframes showImg{
-  0%{
+  0%, 45%{
     opacity: 0;
   }
-  45%{
-    opacity: 0;
-  }
-  55%{
-    opacity: 1;
-  }
-  100%{
+  55%, 100%{
     opacity: 1;
   }
 }

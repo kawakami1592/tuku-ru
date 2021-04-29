@@ -15,7 +15,7 @@
 
       setTimeout(function(){
         header.classList.remove('header-active');
-      }, 2000);
+      }, 1500);
 
     }else if(top < 0){
       header.classList.add('header-hide');
