@@ -92,6 +92,20 @@
 
   });
 
+// カーテン
+  const curtain = document.querySelectorAll('.curtain-animation');
+  window.addEventListener('scroll',function(){
+    curtain.forEach( curtainTarget => {
+      const curtainTargetDistance = curtainTarget.getBoundingClientRect().top + curtainTarget.clientHeight*.5;
+
+      if(window.innerHeight > curtainTargetDistance){
+        curtainTarget.classList.add('show');
+      }
+    });
+  })
+
+
+
 
 // タブメニュー
   const tabMenus = document.querySelectorAll('.tab-menu ul li');

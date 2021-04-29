@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/slot.css">
   <link rel="stylesheet" href="css/grid.css">
   <link rel="stylesheet" href="css/canvas.css">
+  <link rel="stylesheet" href="css/curtain.css">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <script>
     window.addEventListener('load',()=>{
@@ -98,175 +99,210 @@
       </div>
     </div>
 
-    <section id="modal" class="hidden">
-      <img src="./images/pexels-tranmautritam-2194261.jpg">
-      <div id="close">
-        閉じる
+    <section>
+      <div id="modal" class="hidden">
+        <img src="./images/pexels-tranmautritam-2194261.jpg">
+        <div id="close">
+          閉じる
+        </div>
+      </div>
+
+      <div id="open">
+        詳細を見る
+        <div class="icon">
+          <i class="fas fa-share"></i>
+        </div>
+      </div>
+
+      <div id="mask" class="hidden"></div>
+    </section>
+
+
+    <section>
+      <ul class="curtain">
+        <li>
+          <div class="curtain-animation">
+            <div class="curtain-img" ></div>
+          </div>
+        </li>
+
+        <li>
+          <div class="curtain-animation">
+            <div class="curtain-img" ></div>
+          </div>
+        </li>
+
+        <li>
+          <div class="curtain-animation">
+            <div class="curtain-img" ></div>
+          </div>
+        </li>
+
+        <li>
+          <div class="curtain-animation">
+            <div class="curtain-img" ></div>
+          </div>
+        </li>
+    </section>
+
+
+    <section>
+      <div class="tab-menu">
+        <ul>
+          <li data-id="tab-slot" class="tab-selected">スロット</li>
+          <li data-id="tab-B">ユークリッド</li>
+          <li data-id="tab-C">FizzBuzz</li>
+          <li data-id="tab-D">フェルマーテスト</li>
+        </ul>
+
+        <div class="tab-content tab-selected-content" id="tab-slot">
+          <div class="slot" id="slot-main"></div>
+          <div id="start">START</div>
+        </div>
+
+        <div class="tab-content" id="tab-B">
+          <div>
+            <h2>最大公約数</h2>
+            <p></p>
+            <p></p>
+            
+            <form id="form-euclid">
+              <label for="euclid1">数字を入力してください</label>
+              <input type="number" name="input-num" id="euclid1" required placeholder="例　27　54　など">
+              <input type="number" name="input-num" id="euclid2" required placeholder="例　27　54　など">
+              <button>公約数は？？</button>
+            </form>
+            <div>
+              <p id="euclid-ans">ここに表示されます</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-C">
+          <div>
+            <h2>FizzBuzz問題</h2>
+            <p>与えられた数値が３で割り切れるならFizzを5で割り切れるならBuzzを表示します。</p>
+            <p>どちらでも割り切れるならFizzBuzzを表示します。</p>
+            
+            <form id="form-fizzbuzz">
+              <label for="input-fizzbuzz">数字を入力してください</label>
+              <input type="number" name="input-num" id="input-fizzbuzz" placeholder="例　27　54　など">
+            </form>
+            <div>
+              <p id="fizzbuzz-ans">ここに表示されます</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-D">
+          <h2>フェルマーテスト</h2>
+          <p>与えられた自然数が素数かどうかを判定します</p>
+          <form id="form-fermat">
+            <label for="input-fermat">数字を入力してください</label>
+            <input type="number" name="input-num" id="input-fermat" placeholder="例　27　54　など">
+          </form>
+          <div>
+            <p id="fermat-ans">ここに表示されます</p>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <div id="open">
-      詳細を見る
-      <div class="icon">
-        <i class="fas fa-share"></i>
+    <section>
+      <div class="grid">
+        <div class="grid-1">1</div>
+        <div class="grid-2">
+          <canvas id ="canvas-eye" width="200" height="200">
+            Canvas not supported.
+          </canvas>
+        </div>
+        <div class="grid-3">3</div>
+        <div class="grid-4">4</div>
+        <div class="grid-5">5</div>
+        <div class="grid-6">6</div>
+        <div class="grid-7">7</div>
+        <div class="grid-9">9</div>
+        <div class="grid-10">10</div>
+        <div class="grid-11">11</div>
+        <div class="grid-12">12</div>
+        <div class="grid-13">13</div>
       </div>
-    </div>
+    </section>
 
-    <div id="mask" class="hidden"></div>
+    <section>
 
+      <div class="canvasbrock">
+        
+        <!-- パズル -->
+        <div class="puzzle-menu">
+          <ul>
+            <li data-id="puzzle1" class="tab-selected">パズルLv.1</li>
+            <li data-id="puzzle2" id="puzzle_Lv2_tab">パズルLv.2</li>
+            <li data-id="puzzle3" id="puzzle_Lv3_tab">パズルLv.3</li>
+            <li data-id="puzzle4">パズルLv.4</li>
+          </ul>
 
-    <div class="tab-menu">
-      <ul>
-        <li data-id="tab-slot" class="tab-selected">スロット</li>
-        <li data-id="tab-B">ユークリッド</li>
-        <li data-id="tab-C">FizzBuzz</li>
-        <li data-id="tab-D">フェルマーテスト</li>
-      </ul>
-
-      <div class="tab-content tab-selected-content" id="tab-slot">
-        <div class="slot" id="slot-main"></div>
-        <div id="start">START</div>
-      </div>
-
-      <div class="tab-content" id="tab-B">
-        <div>
-          <h2>最大公約数</h2>
-          <p></p>
-          <p></p>
-          
-          <form id="form-euclid">
-            <label for="euclid1">数字を入力してください</label>
-            <input type="number" name="input-num" id="euclid1" required placeholder="例　27　54　など">
-            <input type="number" name="input-num" id="euclid2" required placeholder="例　27　54　など">
-            <button>公約数は？？</button>
-          </form>
-          <div>
-            <p id="euclid-ans">ここに表示されます</p>
-
+          <div class="puzzle-content tab-selected-content" id="puzzle1">
+            <canvas id="puzzle" width="280" height="280">
+              Canvas not supported.
+            </canvas>
           </div>
-        </div>
-      </div>
 
-      <div class="tab-content" id="tab-C">
-        <div>
-          <h2>FizzBuzz問題</h2>
-          <p>与えられた数値が３で割り切れるならFizzを5で割り切れるならBuzzを表示します。</p>
-          <p>どちらでも割り切れるならFizzBuzzを表示します。</p>
-          
-          <form id="form-fizzbuzz">
-            <label for="input-fizzbuzz">数字を入力してください</label>
-            <input type="number" name="input-num" id="input-fizzbuzz" placeholder="例　27　54　など">
-          </form>
-          <div>
-            <p id="fizzbuzz-ans">ここに表示されます</p>
-
+          <div class="puzzle-content" id="puzzle2">
+            <canvas id="puzzle_Lv2" width="280" height="280">
+              Canvas not supported.
+            </canvas>
           </div>
-        </div>
-      </div>
 
-      <div class="tab-content" id="tab-D">
-        <h2>フェルマーテスト</h2>
-        <p>与えられた自然数が素数かどうかを判定します</p>
-        <form id="form-fermat">
-          <label for="input-fermat">数字を入力してください</label>
-          <input type="number" name="input-num" id="input-fermat" placeholder="例　27　54　など">
-        </form>
-        <div>
-          <p id="fermat-ans">ここに表示されます</p>
+          <div class="puzzle-content" id="puzzle3">
+            <canvas id="puzzle_Lv3" width="280" height="280">
+              Canvas not supported.
+            </canvas>
+          </div>
+
+          <div class="puzzle-content" id="puzzle4">
+          </div>
 
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="grid-1">1</div>
-    <div class="grid-2">
-      <canvas id ="canvas-eye" width="200" height="200">
-        Canvas not supported.
-      </canvas>
-    </div>
-    <div class="grid-3">3</div>
-    <div class="grid-4">4</div>
-    <div class="grid-5">5</div>
-    <div class="grid-6">6</div>
-    <div class="grid-7">7</div>
-    <div class="grid-9">9</div>
-    <div class="grid-10">10</div>
-    <div class="grid-11">11</div>
-    <div class="grid-12">12</div>
-    <div class="grid-13">13</div>
-  </div>
 
 
-  <div class="canvasbrock">
-    
-    <!-- パズル -->
-    <div class="puzzle-menu">
-      <ul>
-        <li data-id="puzzle1" class="tab-selected">パズルLv.1</li>
-        <li data-id="puzzle2" id="puzzle_Lv2_tab">パズルLv.2</li>
-        <li data-id="puzzle3" id="puzzle_Lv3_tab">パズルLv.3</li>
-        <li data-id="puzzle4">パズルLv.4</li>
-      </ul>
 
-      <div class="puzzle-content tab-selected-content" id="puzzle1">
-        <canvas id="puzzle" width="280" height="280">
+
+
+
+        <canvas id="pinpong" width="280" height="280">
           Canvas not supported.
         </canvas>
-      </div>
+        <button id="pinpong_start">START</button>
+        <div class="lr_key">
+          <button id="pinpong_left">&#65308;</button>
+          <button id="pinpong_right">&#65310;</button>
+        </div>
 
-      <div class="puzzle-content" id="puzzle2">
-        <canvas id="puzzle_Lv2" width="280" height="280">
+        <canvas id="snake" width="280" height="280">
           Canvas not supported.
         </canvas>
-      </div>
+        <button id="snake_start">START</button>
 
-      <div class="puzzle-content" id="puzzle3">
-        <canvas id="puzzle_Lv3" width="280" height="280">
+        <div class="cross_key">
+          <button id="snake_left">&#65308;</button>
+          <div class="up_doun_key">
+            <button id="snake_up">&#8743;</button>
+            <button id="snake_down">&#8744;</button>
+          </div>
+          <button id="snake_right">&#65310;</button>
+        </div>
+
+        <canvas id="minesweeper" width="280" height="280">
           Canvas not supported.
         </canvas>
+        <button id="minesweeper_start">START</button>
+
       </div>
-
-      <div class="puzzle-content" id="puzzle4">
-      </div>
-
-    </div>
-
-
-
-
-
-
-    <canvas id="pinpong" width="280" height="280">
-      Canvas not supported.
-    </canvas>
-    <button id="pinpong_start">START</button>
-    <div class="lr_key">
-      <button id="pinpong_left">&#65308;</button>
-      <button id="pinpong_right">&#65310;</button>
-    </div>
-
-    <canvas id="snake" width="280" height="280">
-      Canvas not supported.
-    </canvas>
-    <button id="snake_start">START</button>
-
-    <div class="cross_key">
-      <button id="snake_left">&#65308;</button>
-      <div class="up_doun_key">
-        <button id="snake_up">&#8743;</button>
-        <button id="snake_down">&#8744;</button>
-      </div>
-      <button id="snake_right">&#65310;</button>
-    </div>
-
-    <canvas id="minesweeper" width="280" height="280">
-      Canvas not supported.
-    </canvas>
-    <button id="minesweeper_start">START</button>
-
-  </div>
+    </section>
 
 
   <footer>
