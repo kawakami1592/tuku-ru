@@ -259,7 +259,9 @@ input.accordion{
   list-style: none;
 }
 
-.hamburger-menu li {
+#links01 li,
+#links02 li,
+#links03 li {
   height: 0;
   overflow: hidden;
   transition: all 0.5s;
@@ -268,16 +270,64 @@ input.accordion{
 label .fa-angle-double-down{
   transition: all 0.5s;
 }
-#menu_bar01:checked ~ #links01 li,
-#menu_bar02:checked ~ #links02 li {
+
+#menu_bar01:checked ~ #links01 li,/*#menu_bar01:checked より後ろの兄弟要素*/
+#menu_bar02:checked ~ #links02 li,
+#menu_bar03:checked ~ #links03 li {
   height: 54px;
   opacity: 1;
+  overflow: visible;
 }
 #menu_bar01:checked + label .fa-angle-double-down,
-#menu_bar02:checked + label .fa-angle-double-down {
+#menu_bar02:checked + label .fa-angle-double-down,
+#menu_bar03:checked + label .fa-angle-double-down {
   transform: rotateZ(540deg);
 }
 
+
+
+
+#accordion_slide {
+  display: flex;
+}
+#accordion_slide li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accordion_slide {
+  background-color: #96B38A;
+  border: 1px solid;
+  color: #fff;
+  height: 100px;
+  cursor: pointer;
+  padding: 10px;
+}
+.accordion_slide_label{
+  width: 250px;
+  cursor :pointer;
+}
+.accordion_slide_inner {
+  padding: 0;
+  display: flex;
+  background :#f4f4f4;
+}
+
+
+.ccordion_slide_content {
+  cursor: pointer;
+  width: 0;
+  height: 54px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+
+#accordion_slide_check:checked ~.accordion_slide_inner div {
+  border: 1px solid;
+  width: 200px;
+  padding: 5px;
+}
 
 
 
