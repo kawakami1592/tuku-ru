@@ -235,4 +235,25 @@ tabMenusPuzzle.forEach(tabMenuPuzzle => {
 //     photo1.attr('src', 'img/img3.jpg');
 //   }
 // }
+
+
+let nam = 1;
+let aaa = `aaa${nam}`;
+let bbb = `bbb${nam}`;
+
+
+  let KKK =`<div>
+                <input type="checkbox" name="${aaa}"/>
+              </div>
+              <div>
+                <input type="checkbox" name="${bbb}"/>
+              </div>`;
+  
+  
+
+
+  const XXX = document.getElementById('AAA')
+  console.log(XXX);
+  XXX.insertAdjacentHTML('beforeend',KKK);
+  XXX.insertAdjacentHTML('beforeend',KKK);
 }
