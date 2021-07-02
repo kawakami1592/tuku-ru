@@ -254,6 +254,7 @@ let bbb = `bbb${nam}`;
 
   const XXX = document.getElementById('AAA')
   console.log(XXX);
+  // uQdYD#4SGMA#ZR7
   XXX.insertAdjacentHTML('beforeend',KKK);
   XXX.insertAdjacentHTML('beforeend',KKK);
 }
