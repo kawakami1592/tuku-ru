@@ -336,8 +336,14 @@
     <input type="radio" name="gender" value="female" onchange="radio(this.value)">女性</input>
     <script>
       function radio(value){
-        // ラジオボタンが変更されたときの処理
         console.log(value);
+
+        // ラジオボタンが変更されたときの処理
+        if(value == "male"){
+        console.log("男");
+        }else{
+        console.log("女");
+        }
       }
     </script>
 
