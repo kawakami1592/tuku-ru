@@ -331,24 +331,38 @@
     </section>
 
 
-    <div id="AAA">
 
-      <div >
-        <div>
-          aaa
-        </div>
-        <div >
-          bbb
-        </div>
-      </div>
+    <input type="radio" name="gender" value="male" onchange="radio(this.value)">男性</input>
+    <input type="radio" name="gender" value="female" onchange="radio(this.value)">女性</input>
+    <script>
+      function radio(value){
+        // ラジオボタンが変更されたときの処理
+        console.log(value);
+      }
+    </script>
 
-    </div>
+
+
 
 
   <footer>
     <details>
       <summary>Adobe Photoshop</summary>
       
+
+      <div id="AAA">
+
+        <div >
+          <div>
+            aaa
+          </div>
+          <div >
+            bbb
+          </div>
+        </div>
+  
+      </div>
+
     </details>
   </footer>
 
