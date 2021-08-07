@@ -140,6 +140,7 @@ header h1.name{
 
 .text-animation span{
   display: inline-block;
+  line-height: normal;
 }
 
 .text-animation > span{
@@ -484,8 +485,6 @@ details[open] {
 .tab-selected-content{
   display: block;
 }
-
-
 
 
 /* @media (min-width: 900px) {
