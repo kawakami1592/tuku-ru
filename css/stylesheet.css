@@ -84,6 +84,7 @@ header h1.name{
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 /* スライドショー */
 .slideshow{
   overflow: hidden;
@@ -95,7 +96,7 @@ header h1.name{
   animation: 20s linear infinite sliderAnimation;
 }
 .show-slider img{
-  width: 20vw;
+  width: 15em;
   
 }
 
@@ -154,6 +155,59 @@ header h1.name{
 .text-animation > span:nth-of-type(even) > span{
   animation: showTextFromBottom ease-out 1.5s backwards;
 }
+
+
+/* カルーセル */
+.carousel{
+  width: 80%;
+  height: 220px;
+  margin: 16px auto;
+  overflow: hidden;
+  position: relative;
+}
+#carousel_list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  transition: transform .3s;
+}
+#carousel_list li{
+  height: 100%;
+  min-width: 100%;
+}
+#carousel_list li img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#prev,
+#next{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  font-size: 24px;
+  padding: 0 8px 4px;
+  cursor: pointer;
+}
+#prev:hover,
+#next:hover{
+  opacity: .8;
+}
+#prev{
+  left: 0;
+}
+#next{
+  right: 0;
+}
+
+
+
+
 
 .show-scroll{
   height:200px;

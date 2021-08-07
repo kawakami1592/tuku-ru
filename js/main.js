@@ -61,12 +61,33 @@
     mask.classList.toggle('hidden');
   });
 
+
+
 // スクロールバー
   const scrollImgs = document.getElementById('slider-js');
   const copyImgs = scrollImgs.cloneNode(true);
   const showScrollJs = document.getElementById('show-scroll-js');
   showScrollJs.insertBefore(copyImgs, scrollImgs.nextSibling);
 
+
+// カルーセル
+  const next = document.getElementById('next');
+  const prev = document.getElementById('prev');
+  const carousel_list = document.getElementById('carousel_list');
+  const slides = carousel_list.children;
+  let currentIndex = 0;
+
+  next.addEventListener('click', () => {
+    currentIndex++;
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    carousel_list.style.transform = `translateX(${-1 * slideWidth * currentIndex}px)`;
+  });
+
+  prev.addEventListener('click', () => {
+    currentIndex--;
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    carousel_list.style.transform = `translateX(${-1 * slideWidth * currentIndex}px)`;
+  });
 
 
 // モーダルウィンドウ

@@ -35,6 +35,55 @@
   <div class="body-main">
     <!-- <div class="popup-message">Hello!</div> -->
 
+    <!-- ハンバーガーメニュー -->
+    <nav id="hamburger" class="hamburger-close">
+      <div class="hamburger-menu">
+
+        <input type="checkbox" id="menu_bar01" class="accordion" />
+        <label class="accordion-label" for="menu_bar01"><i class="fas fa-angle-double-down"></i>サンプル</label>
+        <ul id="links01">
+            <li><a href="./next.html">スライドショー</a></li>
+            <li><a href="./fps.html">FPS</a></li>
+            <li><a href="">Link03</a></li>
+            <li><a href="">Link04</a></li>
+        </ul>
+
+        <input type="checkbox" id="menu_bar02" class="accordion"/>
+        <label class="accordion-label" for="menu_bar02"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
+        <ul id="links02">
+            <li><a href="./react.html">React</a></li>
+            <li><a href="./React-to-do.html">ReactToDo</a></li>
+            <li><a href="./scroll.html">スクロール</a></li>
+            <li><a href="">Link04</a></li>
+        </ul>
+
+        <input type="checkbox" id="menu_bar03" class="accordion"/>
+        <label class="accordion-label" for="menu_bar03"><i class="fas fa-angle-double-down"></i>アコーディオンスライド</label>
+        <ul id="links03">
+            <li>
+              <ul id="accordion_slide">
+                <li>
+
+                  <input type="checkbox" id="accordion_slide_check" class="accordion"/>
+                  <label class="accordion_slide_label" for="accordion_slide_check">アコーディオンスライド</label>
+
+                  <div class="accordion_slide_inner">
+                    <div class="ccordion_slide_content">中身1</div>
+                    <div class="ccordion_slide_content">中身2</div>
+                    <div class="ccordion_slide_content">中身3</div>
+                  </div>
+
+                </li>
+              </ul>
+            </li>
+            <li>スライド</li>
+            <li>スライド</li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!-- スライドショー -->
     <div class="top">
       <div class="slideshow">
         <div class="show-slider">
@@ -55,52 +104,27 @@
       </div>
     </div>
 
-    <nav id="hamburger" class="hamburger-close">
-        <div class="hamburger-menu">
 
-          <input type="checkbox" id="menu_bar01" class="accordion" />
-          <label class="accordion-label" for="menu_bar01"><i class="fas fa-angle-double-down"></i>サンプル</label>
-          <ul id="links01">
-              <li><a href="./next.html">スライドショー</a></li>
-              <li><a href="./fps.html">FPS</a></li>
-              <li><a href="">Link03</a></li>
-              <li><a href="">Link04</a></li>
-          </ul>
 
-          <input type="checkbox" id="menu_bar02" class="accordion"/>
-          <label class="accordion-label" for="menu_bar02"><i class="fas fa-angle-double-down"></i>アコーディオン</label>
-          <ul id="links02">
-              <li><a href="./react.html">React</a></li>
-              <li><a href="./React-to-do.html">ReactToDo</a></li>
-              <li><a href="./scroll.html">スクロール</a></li>
-              <li><a href="">Link04</a></li>
-          </ul>
 
-          <input type="checkbox" id="menu_bar03" class="accordion"/>
-          <label class="accordion-label" for="menu_bar03"><i class="fas fa-angle-double-down"></i>アコーディオンスライド</label>
-          <ul id="links03">
-              <li>
-                <ul id="accordion_slide">
-                  <li>
+    <!-- カルーセル -->
+    <div class="carousel">
+      <ul id="carousel_list">
+        <li><img src="images/pexels-josh-sorenson-68342.jpg"></li>
+        <li><img src="images/pexels-josh-sorenson-1154503.jpg"></li>
+        <li><img src="images/pexels-pixabay-358482.jpg"></li>
+      </ul>
+  
+      <button id="prev">&laquo;</button>
+      <button id="next">&raquo;</button>
+    </div>
 
-                    <input type="checkbox" id="accordion_slide_check" class="accordion"/>
-                    <label class="accordion_slide_label" for="accordion_slide_check">アコーディオンスライド</label>
 
-                    <div class="accordion_slide_inner">
-                      <div class="ccordion_slide_content">中身1</div>
-                      <div class="ccordion_slide_content">中身2</div>
-                      <div class="ccordion_slide_content">中身3</div>
-                    </div>
 
-                  </li>
-                </ul>
-              </li>
-              <li>スライド</li>
-              <li>スライド</li>
-          </ul>
-          
-      </div>
-    </nav>
+
+
+
+
 
     <div class="show-scroll" id="show-scroll-js">
       <div class="slider" id="slider-js">
