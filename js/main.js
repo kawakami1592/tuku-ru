@@ -63,11 +63,10 @@
 
 
 
-// スクロールバー
-  const scrollImgs = document.getElementById('slider-js');
-  const copyImgs = scrollImgs.cloneNode(true);
-  const showScrollJs = document.getElementById('show-scroll-js');
-  showScrollJs.insertBefore(copyImgs, scrollImgs.nextSibling);
+
+
+
+
 
 
 // カルーセル
@@ -75,19 +74,90 @@
   const prev = document.getElementById('prev');
   const carousel_list = document.getElementById('carousel_list');
   const slides = carousel_list.children;
+  console.log(slides);
   let currentIndex = 0;
+  const dots = [];
+
+  function updateButtons() {
+    prev.classList.remove('hidden');
+    next.classList.remove('hidden');
+
+    if (currentIndex === 0) {
+      prev.classList.add('hidden');
+    }
+    if (currentIndex === slides.length - 1) {
+      next.classList.add('hidden');
+    }
+  }
+  
+  function moveSlides(){
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    carousel_list.style.transform = `translateX(${-1 * slideWidth * currentIndex}px)`;
+  }
+
+  function setupDots() {
+    for (let i = 0; i < slides.length; i++) {
+      const button = document.createElement('button');
+      button.addEventListener('click', () => {
+        currentIndex = i;
+        updateDots();
+        updateButtons();
+        moveSlides();
+      });
+      dots.push(button);
+      document.getElementById('carousel_nav').appendChild(button);
+    }
+    dots[0].classList.add('current');
+  }
+
+  function updateDots() {
+    dots.forEach(dot => {
+      dot.classList.remove('current');
+    });
+    dots[currentIndex].classList.add('current');
+  }
+  
+  updateButtons();
+  setupDots();
 
   next.addEventListener('click', () => {
     currentIndex++;
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    carousel_list.style.transform = `translateX(${-1 * slideWidth * currentIndex}px)`;
+    updateButtons();
+    updateDots();
+    moveSlides();
   });
 
   prev.addEventListener('click', () => {
     currentIndex--;
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    carousel_list.style.transform = `translateX(${-1 * slideWidth * currentIndex}px)`;
+    updateButtons();
+    updateDots();
+    moveSlides();
   });
+
+  window.addEventListener('resize', () => {
+    moveSlides();
+  });
+
+
+
+  let timeoutId;
+  function playSlideshow() {
+    timeoutId = setTimeout(() => {
+      next.click();
+      playSlideshow();
+    }, 5000);
+  }
+  // playSlideshow();
+
+
+
+
+
+// スクロールバー
+  const scrollImgs = document.getElementById('slider-js');
+  const copyImgs = scrollImgs.cloneNode(true);
+  const showScrollJs = document.getElementById('show-scroll-js');
+  showScrollJs.insertBefore(copyImgs, scrollImgs.nextSibling);
 
 
 // モーダルウィンドウ
@@ -274,7 +344,7 @@ let bbb = `bbb${nam}`;
 
 
   const XXX = document.getElementById('AAA')
-  console.log(XXX);
+  // console.log(XXX);
   XXX.insertAdjacentHTML('beforeend',KKK);
   XXX.insertAdjacentHTML('beforeend',KKK);
 

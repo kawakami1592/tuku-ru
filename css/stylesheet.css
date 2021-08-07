@@ -158,10 +158,13 @@ header h1.name{
 
 
 /* カルーセル */
-.carousel{
+.carousel {
   width: 80%;
-  height: 220px;
   margin: 16px auto;
+}
+.carousel_screen{
+  width: 100%;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -171,7 +174,7 @@ header h1.name{
   padding: 0;
   height: 100%;
   display: flex;
-  transition: transform .3s;
+  transition: transform .5s;
 }
 #carousel_list li{
   height: 100%;
@@ -204,7 +207,27 @@ header h1.name{
 #next{
   right: 0;
 }
-
+.hidden{
+  display: none;
+}
+#carousel_nav{
+  margin-top: 16px;
+  text-align: center;
+}
+#carousel_nav button + button{
+  margin-left: 8px;
+}
+#carousel_nav button{
+  border: none;
+  width: 16px;
+  height: 16px;
+  background: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#carousel_nav .current{
+  background: #999;
+}
 
 
 
